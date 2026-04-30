@@ -1,0 +1,89 @@
+---
+---
+
+<section class="features">
+  <h2>LO QUE HEMOS CONSEGUIDO</h2>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <h3>FAMILIAS</h3>
+      <span class="number">11</span>
+      <p>Salvadas de inmuebil</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>ALQUILER</h3>
+      <span class="number">200€</span>
+      <p>Mensuales por piso VPO</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>ÉXITO</h3>
+      <span class="number">100%</span>
+      <p>Gracias a la organiz</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .features {
+    padding: 4rem 3rem;
+    background: #0c1e33;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-text);
+    letter-spacing: 0.15em;
+    margin-bottom: 2.5rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    background: var(--color-secondary);
+    padding: 2rem 1.5rem;
+  }
+
+  .feature-card h3 {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.25rem;
+  }
+
+  .number {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .feature-card p {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    .features {
+      padding: 3rem 1.5rem;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

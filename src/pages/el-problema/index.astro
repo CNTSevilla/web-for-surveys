@@ -1,0 +1,475 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/layout/Header.astro";
+---
+
+<Layout title="El Problema - Familias Palmete">
+  <Header />
+  <main>
+    <section class="problem-hero">
+      <div class="problem-hero-content">
+        <span class="section-label">EL PROBLEMA</span>
+        <h2>
+          La vivienda en España<br /><span class="highlight"
+            >no es un derecho</span
+          >
+        </h2>
+        <p class="hero-description">
+          Datos reales de Sevilla que demuestran la crisis del alquiler y la
+          necesidad de organizarse.
+        </p>
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <div class="stats-container">
+        <div class="stat-card" data-aos="fade-up">
+          <div class="stat-icon">📋</div>
+          <div class="stat-number-wrapper">
+            <div class="stat-number" data-target="2790">0</div>
+            <div class="stat-suffix">€/m²</div>
+          </div>
+          <div class="stat-label">Precio medio de venta</div>
+          <div class="stat-note">Sevilla marzo 2026</div>
+        </div>
+
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-icon">📈</div>
+          <div class="stat-number" data-target="45">0</div>
+          <div class="stat-suffix">%</div>
+          <div class="stat-label">
+            de incremento en el precio de la vivienda
+          </div>
+          <div class="stat-note">Últimos 5 años</div>
+        </div>
+
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-icon">🪙</div>
+          <div class="stat-number-wrapper">
+            <div class="stat-number" data-target="1050">0</div>
+            <div class="stat-suffix">€</div>
+          </div>
+          <div class="stat-label">Precio medio alquiler</div>
+          <div class="stat-note">Sevilla noviembre 2024</div>
+        </div>
+
+        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-icon">💸</div>
+          <div class="stat-number-wrapper">
+            <div class="stat-number" data-target="41">0</div>
+            <div class="stat-suffix">%</div>
+          </div>
+          <div class="stat-label">del sueldo en alquiler</div>
+          <div class="stat-note">En Sevilla (2024)</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="problems-section">
+    <div class="problems-container">
+      <h3 class="problems-title" data-aos="fade-up">
+        Datos reales de Sevilla
+      </h3>
+
+      <div class="problem-grid">
+        <div class="problem-card" data-aos="fade-right">
+          <div class="card-icon">📈</div>
+          <h4>Alquiler +7,2% anual</h4>
+          <p>
+            El precio del alquiler subió un 7,2% en 2024. El metro cuadrado
+            alcanzó máximos históricos: 11,9€/m².
+          </p>
+          <div class="card-tag">Encaredmiento</div>
+        </div>
+
+        <div class="problem-card" data-aos="fade-left" data-aos-delay="100">
+          <div class="card-icon">🏠</div>
+          <h4>43% más demanda VPO</h4>
+          <p>
+            En 4 años la demanda de VPO subió 43%. De 12.699 (2020) a 18.381
+            solicitantes en 2024.
+          </p>
+          <div class="card-tag">Desabastecimiento</div>
+        </div>
+
+        <div class="problem-card" data-aos="fade-right" data-aos-delay="200">
+          <div class="card-icon">🏢</div>
+          <h4>33% para inversores</h4>
+          <p>
+            Tres de cada diez viviendas en venta las compran inversores para
+            dedicarlas al alquiler turístico o abusivo.
+          </p>
+          <div class="card-tag">Especulación</div>
+        </div>
+
+        <div class="problem-card" data-aos="fade-left" data-aos-delay="300">
+          <div class="card-icon">⚖️</div>
+          <h4>Jóvenes: 53% solicitantes</h4>
+          <p>
+            Más de la mitad de los solicitantes de VPO son jóvenes. El 41% de su
+            sueldo va al alquiler.
+          </p>
+          <div class="card-tag">Exclusión</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Esta realidad tiene una solución</h2>
+      <p>La organización colectiva ya demostró en Palmete que es posible.</p>
+      <a href="/la-solucion" class="cta-button">
+        DESCUBRE LA SOLUCIÓN
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 12H19M19 12L12 5M19 12L12 19"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Animate counters on scroll
+  function animateCounters() {
+    const counters = document.querySelectorAll(".stat-number");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = parseInt(counter.dataset.target);
+            const suffix = counter.parentElement.querySelector(".stat-suffix");
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+              current += step;
+              if (current >= target) {
+                counter.textContent = target.toLocaleString();
+                if (suffix) suffix.style.display = "inline";
+                clearInterval(timer);
+              } else {
+                counter.textContent = Math.floor(current).toLocaleString();
+              }
+            }, 16);
+
+            observer.unobserve(counter);
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+
+    counters.forEach((counter) => observer.observe(counter));
+  }
+
+  // Initialize on load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", animateCounters);
+  } else {
+    animateCounters();
+  }
+</script>
+
+<style>
+  .problem-hero {
+    width: 100%;
+    background: #fff;
+    padding: 10rem 2rem 6rem;
+    text-align: center;
+  }
+
+  .problem-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+  }
+
+  .problem-hero h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: #111;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .highlight {
+    color: var(--color-accent);
+  }
+
+  .hero-description {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stats-section {
+    width: 100%;
+    background: #0a1929;
+    padding: 4rem 2rem;
+  }
+
+  .stats-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .stat-card {
+    background: #0a1929;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+    transition:
+      transform 0.2s,
+      border-color 0.2s;
+  }
+
+  .stat-number-wrapper {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-accent);
+  }
+
+  .stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: 0;
+    display: inline;
+  }
+
+  .stat-suffix {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1;
+    display: none;
+    vertical-align: baseline;
+  }
+
+  .stat-number-wrapper {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-suffix {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1;
+    display: none;
+    vertical-align: baseline;
+  }
+
+  .stat-note {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .problems-section {
+    width: 100%;
+    background: #0a1929;
+    padding: 6rem 2rem;
+  }
+
+  .problems-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .problems-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .problem-card {
+    background: #0a1929;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition:
+      transform 0.2s,
+      border-color 0.2s;
+  }
+
+  .problem-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-accent);
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .problem-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .problem-card p {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .card-tag {
+    display: inline-block;
+    background: var(--color-accent);
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .cta-section {
+    width: 100%;
+    background: #fff;
+    padding: 6rem 2rem;
+    text-align: center;
+  }
+
+  .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .cta-content h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 1rem;
+  }
+
+  .cta-content p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--color-accent);
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition:
+      transform 140ms ease,
+      box-shadow 140ms ease;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+    color: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .problem-hero {
+      padding: 8rem 1.5rem 4rem;
+    }
+
+    .stats-container {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+    }
+
+    .problem-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

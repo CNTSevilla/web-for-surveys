@@ -1,0 +1,268 @@
+---
+import Modal from "../ui/Modal.astro";
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header">
+  <div class="brand">
+    <a href="/" class="brand-link">
+      <div class="icon-container">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3 9.5L12 4L21 9.5V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9.5Z"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path
+            d="M9 21V12H15V21"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <span class="brand-text"
+        >VIVIENDA DIGNA <span class="brand-highlight">SE CONSIGUE</span></span
+      >
+    </a>
+  </div>
+
+  <button class="menu-toggle" aria-label="Abrir menú">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <nav class="nav-menu" aria-label="Menú principal">
+    <a href="/" class={`nav-link ${currentPath === '/' ? 'active' : ''}`}>NUESTRO CASO</a>
+    <a href="/el-problema" class={`nav-link ${currentPath === '/el-problema' ? 'active' : ''}`}>EL PROBLEMA</a>
+    <a href="/la-solucion" class={`nav-link ${currentPath === '/la-solucion' ? 'active' : ''}`}>LA SOLUCIÓN</a>
+    <a href="/mapa" class={`nav-link ${currentPath === '/mapa' ? 'active' : ''}`}>EL MAPA</a>
+    <button data-modal="contact-modal" class="cta-button">ACTÚA AHORA</button>
+  </nav>
+</header>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle') as HTMLElement;
+  const navMenu = document.querySelector('.nav-menu') as HTMLElement;
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+
+  navMenu.querySelectorAll('.nav-link, .cta-button').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navMenu.classList.remove('active');
+    });
+  });
+</script>
+
+<Modal />
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .brand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  .brand-highlight {
+    color: var(--color-accent);
+    display: block;
+    font-size: 0.9rem;
+  }
+
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--color-accent);
+    border-radius: 8px;
+    color: var(--color-primary);
+  }
+
+  .brand-text {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.5rem;
+    transition: color 140ms ease;
+  }
+
+  .nav-link:hover {
+    color: var(--color-accent);
+  }
+
+  .nav-link.active {
+    color: var(--color-accent);
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--color-accent);
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition:
+      transform 140ms ease,
+      box-shadow 140ms ease;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+  }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .menu-toggle .bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #111;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  @media (max-width: 1155px) {
+    .header {
+      padding: 1rem 1.5rem;
+    }
+    .brand-text {
+      display: none;
+    }
+    .menu-toggle {
+      display: flex;
+    }
+    .nav-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: #ffffff;
+      padding: 1.5rem;
+      gap: 1rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      transform: translateY(-120%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+    .nav-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    .nav-menu .nav-link {
+      width: 100%;
+      text-align: center;
+      padding: 0.75rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .nav-menu .nav-link:last-of-type {
+      border-bottom: none;
+    }
+    .nav-menu .cta-button {
+      width: 100%;
+      text-align: center;
+      padding: 0.875rem;
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .header {
+      padding: 0.875rem 1rem;
+    }
+    .icon-container {
+      width: 36px;
+      height: 36px;
+    }
+    .icon-container svg {
+      width: 20px;
+      height: 20px;
+    }
+    .nav-menu {
+      padding: 1rem;
+    }
+  }
+</style>

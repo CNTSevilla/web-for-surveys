@@ -1,0 +1,271 @@
+---
+// CTASection.astro
+---
+
+<div class="cta-container">
+  <div class="cta-content">
+    <div class="cta-header">
+      <div>
+        <h2>
+          No es un regalo. Es tu derecho.
+          <span>Y lo puedes conseguir.</span>
+        </h2>
+
+        <p>
+          Te acompañamos paso a paso para que tú también puedas pagar 200€ de
+          alquiler por tu vivienda VPO.
+        </p>
+      </div>
+
+      <div class="badge-box">
+        <div class="badge-inner">
+          <div class="fist-icon">✊</div>
+          <span>
+            SIN LUCHA<br />
+            NO HAY<br />
+            VIVIENDA DIGNA
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-item">
+        <div class="step-icon">🔍</div>
+
+        <div>
+          <h3>1. Infórmate</h3>
+          <p>Conoce tus derechos y tu situación.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-icon">👥</div>
+
+        <div>
+          <h3>2. Organízate</h3>
+          <p>La unión es la fuerza. No estás sola/o.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-icon">✊</div>
+
+        <div>
+          <h3>3. Actúa</h3>
+          <p>Damos el paso juntos y lo conseguimos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-button-wrapper">
+      <a href="/mapa" class="cta-button">
+        QUIERO CONSEGUIR MI ALQUILER DE 200€
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="cta-footer">
+      <span>🔒 Asesoramiento</span>
+      <span>•</span>
+      <span>Confidencial</span>
+      <span>•</span>
+      <span>Sin compromisos</span>
+    </div>
+    <a href="/admin" class="admin-access" aria-label="Acceso administración">·</a>
+  </div>
+</div>
+<style>
+  .cta-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .cta-content {
+    background: #111;
+    color: white;
+    border-radius: 6px;
+    padding: 7rem 3.75rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .cta-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+
+  .cta-header h2 {
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.05;
+    font-weight: 800;
+    margin: 0 0 1rem;
+    max-width: 720px;
+  }
+
+  .cta-header h2 span {
+    display: block;
+    color: #00c26f;
+  }
+
+  .cta-header p {
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 600px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .badge-box {
+    flex-shrink: 0;
+    transform: rotate(-3deg);
+  }
+
+  .badge-inner {
+    background: #ffd900;
+    color: black;
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-align: left;
+    line-height: 1.2;
+  }
+
+  .fist-icon {
+    font-size: 1.5rem;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2.5rem 0;
+  }
+
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    padding-left: 1.5rem;
+  }
+
+  .step-item:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .step-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 999px;
+    background: #023d2a;
+    border: 1px solid rgba(0, 194, 111, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .step-item h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .step-item p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+
+  .cta-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .cta-button {
+    background: var(--color-accent);
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition:
+      transform 140ms ease,
+      box-shadow 140ms ease;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+  }
+
+  .cta-footer {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+  }
+
+  .admin-access {
+    display: block;
+    text-align: center;
+    color: rgba(17, 25, 41, 0.05);
+    font-size: 0.1rem;
+    text-decoration: none;
+    margin-top: 1rem;
+    cursor: default;
+  }
+
+  .admin-access:hover {
+    color: rgba(17, 25, 41, 0.05);
+  }
+
+  @media (max-width: 900px) {
+    .cta-header {
+      flex-direction: column;
+    }
+
+    .steps-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .step-item {
+      border-left: none;
+      padding-left: 0;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .step-item:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .cta-content {
+      padding: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,255 @@
+<section class="stats-banner">
+  <div class="stats-container">
+    <div class="stat-box">
+      <div class="stat-icon">
+        <!-- Icono grupo -->
+        <svg
+          width="42"
+          height="42"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 21V19C16 17.9 15.1 17 14 17H6C4.9 17 4 17.9 4 19V21"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path
+            d="M10 13C12.2 13 14 11.2 14 9C14 6.8 12.2 5 10 5C7.8 5 6 6.8 6 9C6 11.2 7.8 13 10 13Z"
+            stroke="currentColor"
+            stroke-width="2"></path>
+          <path
+            d="M20 21V19C20 18.1 19.4 17.3 18.5 17.1"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"></path>
+          <path
+            d="M15.5 5.1C16.4 5.3 17 6.1 17 7C17 7.9 16.4 8.7 15.5 8.9"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"></path>
+        </svg>
+      </div>
+
+      <div class="stat-content">
+        <span class="stat-number">11</span>
+        <span class="stat-text">FAMILIAS<br />SE QUEDAN EN<br />SUS CASAS</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="stat-box">
+      <div class="stat-icon">
+        <!-- Icono casa -->
+        <svg
+          width="42"
+          height="42"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3 10L12 3L21 10"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+          <path
+            d="M5 9V21H19V9"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </div>
+
+      <div class="stat-content">
+        <span class="stat-number">200€</span>
+        <span class="stat-text">DE ALQUILER<br />POR PISO VPO</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="stat-box">
+      <div class="stat-icon">
+        <!-- Icono escudo -->
+        <svg
+          width="42"
+          height="42"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 3L19 6V11C19 16 15.5 20 12 21C8.5 20 5 16 5 11V6L12 3Z"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linejoin="round"></path>
+        </svg>
+      </div>
+
+      <div class="stat-content">
+        <span class="stat-text">FRENAMOS UN<br />DESAHUCIO<br />ILEGAL</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="stat-box">
+      <div class="stat-icon">
+        <!-- Icono megáfono -->
+        <svg
+          width="42"
+          height="42"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3 11V13"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"></path>
+          <path
+            d="M7 9V15"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"></path>
+          <path
+            d="M11 7L20 4V20L11 17"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linejoin="round"></path>
+          <path
+            d="M7 9H11V15H7"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linejoin="round"></path>
+        </svg>
+      </div>
+
+      <div class="stat-content">
+        <span class="stat-text">LA LUCHA<br />COLECTIVA<br />FUNCIONA</span>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .stats-banner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: -60px;
+    position: relative;
+    z-index: 10;
+    position: absolute;
+    top: 107%;
+    background: transparent;
+  }
+
+  .stats-container {
+    background: #02150d;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.8rem 2rem;
+    max-width: 1200px;
+    width: calc(100% - 40px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  }
+
+  .stat-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .stat-icon {
+    color: #00ff9d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .stat-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+  }
+
+  .stat-text {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    letter-spacing: 0.03em;
+  }
+
+  .divider {
+    width: 1px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0 1.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .stats-banner {
+      top: 100%;
+    }
+
+    .stats-container {
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .divider {
+      display: none;
+    }
+
+    .stat-box {
+      flex: 1 1 calc(50% - 1rem);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .stats-container {
+      padding: 1.5rem;
+      grid-template-columns: 1fr 1fr;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .stat-box {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .stat-content {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .stat-number {
+      font-size: 1.6rem;
+    }
+
+    .stat-text {
+      font-size: 0.85rem;
+    }
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/layout/Header.astro";
+import Hero from "../components/layout/Hero.astro";
+import BannerInfo from "../components/sections/BannerInfo.astro";
+import Story from "../components/sections/Story.astro";
+import CTASection from "../components/sections/CTASection.astro";
+---
+
+<Layout title="Familias Palmete - Vivienda VPO 200€">
+  <Header />
+
+  <main>
+    <section id="hero">
+      <Hero />
+    </section>
+
+    <section id="banner-info">
+      <BannerInfo />
+    </section>
+
+    <section id="story">
+      <Story />
+    </section>
+
+    <section id="cta">
+      <CTASection />
+    </section>
+  </main>
+</Layout>

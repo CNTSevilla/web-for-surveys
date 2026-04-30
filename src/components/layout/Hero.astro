@@ -1,0 +1,265 @@
+---
+import Button from "./Button.astro";
+import Badge from "./Badge.astro";
+---
+
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>
+        ¿Quieres pagar
+        <span class="price-tag">200€</span>
+        de alquiler
+        <br />por tu piso VPO?
+      </h1>
+
+      <div class="hero-badges">
+        <div class="badge">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="3"
+              y="11"
+              width="18"
+              height="14"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="2"></rect>
+            <path
+              d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11"
+              stroke="currentColor"
+              stroke-width="2"></path>
+          </svg>
+          <span>100% legal</span>
+        </div>
+        <div class="badge">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17 21V19C17 16.7909 15.2091 15 13 15H5C2.79086 15 1 16.7909 1 19V21M23 21V19C23 16.7909 21.2091 15 19 15M9 21V9M15 21V9M5 21H19M7 3V7M17 3V7"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+          <span>100% colectivo</span>
+        </div>
+        <div class="badge">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.12931 4.39828 5.41106C5.79935 3.69281 7.69279 2.39117 9.79619 1.7307C11.8996 1.07022 14.1003 1.08984 16.1879 1.78691C18.2756 2.48398 20.1043 3.83624 21.3434 5.56476"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+          <span>100% real</span>
+        </div>
+      </div>
+
+      <a href="/el-problema" class="cta-button button-discover">
+        CONOCE EL PROBLEMA
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 12H19M19 12L12 5M19 12L12 19"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 0;
+  }
+
+  .hero-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("/images/hero-bg.png");
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6rem 4rem;
+    gap: 2rem;
+  }
+
+  .hero-text {
+    max-width: 600px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: 4.8rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #000;
+    margin-bottom: 1rem;
+  }
+
+  .price-tag {
+    background: var(--color-accent);
+    color: #fff;
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .subtitle {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 2rem;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    text-align: right;
+  }
+
+  .button-discover {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+
+  .badge svg {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 1390px) {
+    .hero-bg::before {
+      background-image: url("/images/hero-bg-mobile.png");
+      background-position: left;
+    }
+
+    h1 {
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      font-size: 3.6rem;
+    }
+
+    .subtitle {
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .badge {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.3);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hero-bg::before {
+      background-position: 30%;
+    }
+
+    .hero-content {
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    .hero-badges {
+      text-align: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .badge {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    h1 {
+      font-size: 2.8rem;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+</style>

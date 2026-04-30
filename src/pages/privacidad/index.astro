@@ -1,0 +1,155 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/layout/Header.astro";
+---
+
+<Layout title="Política de Privacidad - Familias Palmete">
+  <Header />
+  <main class="legal-page">
+    <div class="legal-container">
+      <div class="legal-content">
+        <h1>Política de Privacidad</h1>
+        <p class="last-updated">Última actualización: Abril 2026</p>
+
+        <section>
+          <h2>1. Responsable del tratamiento</h2>
+          <p>El Comité de la Calle Verdad es un proyecto vecinal sin ánimo de lucro.</p>
+          <p><strong>Contacto:</strong> comitecalleverdad@gmail.es</p>
+        </section>
+
+        <section>
+          <h2>2. Datos que recogemos</h2>
+          <p>A través de nuestro mapa interactivo de alquileres, podemos recoger:</p>
+          <ul>
+            <li><strong>Ubicación aproximada</strong> (coordenadas del punto marcado en el mapa)</li>
+            <li><strong>Precio del alquiler</strong> indicado voluntariamente por el usuario</li>
+            <li><strong>Correo electrónico</strong>, solo si el usuario marca voluntariamente la opción "Quiero que me contactéis"</li>
+            <li><strong>Identificador de navegador (fingerprint)</strong>, generado a partir de características técnicas del dispositivo, exclusivamente para evitar envíos duplicados</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>3. Finalidad del tratamiento</h2>
+          <p>Los datos recogidos se utilizan para:</p>
+          <ul>
+            <li>Visualizar información sobre alquileres en el mapa de forma agregada y anónima</li>
+            <li>Contactar a los usuarios que lo soliciten explícitamente para su participación en la organización vecinal</li>
+            <li>Evitar envíos duplicados por parte del mismo usuario (mediante fingerprint del navegador)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Base legal</h2>
+          <p>El tratamiento de datos se basa en:</p>
+          <ul>
+            <li><strong>Consentimiento del usuario:</strong> al enviar voluntariamente la información a través del formulario del mapa</li>
+            <li><strong>Interés legítimo:</strong> prevenir abusos y duplicados del servicio</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>5. Conservación de los datos</h2>
+          <p>Los datos se conservarán mientras el usuario no solicite su supresión. Los emails de contacto solo se utilizarán para los fines descritos y no se compartirán con terceros.</p>
+        </section>
+
+        <section>
+          <h2>6. Derechos del usuario</h2>
+          <p>De acuerdo con el Reglamento General de Protección de Datos (RGPD), puedes ejercer:</p>
+          <ul>
+            <li><strong>Derecho de acceso:</strong> conocer qué datos tuyos estamos tratando</li>
+            <li><strong>Derecho de rectificación:</strong> corregir datos inexactos</li>
+            <li><strong>Derecho de supresión:</strong> solicitar la eliminación de tus datos</li>
+            <li><strong>Derecho de limitación:</strong> limitar el tratamiento de tus datos</li>
+            <li><strong>Derecho de portabilidad:</strong> recibir tus datos en un formato estructado</li>
+          </ul>
+          <p>Para ejercer estos derechos, contacta a: <strong>contacto@familiaspalmete.es</strong></p>
+        </section>
+
+        <section>
+          <h2>7. Seguridad</h2>
+          <p>Aplicamos medidas técnicas y organizativas para proteger tus datos contra acceso no autorizado, alteración o destrucción.</p>
+        </section>
+
+        <section>
+          <h2>8. Cookies</h2>
+          <p>Esta web no utiliza cookies de terceros ni de seguimiento. El token de sesión de administración se almacena exclusivamente en el <code>localStorage</code> de tu navegador y no contiene datos personales.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .legal-page {
+    min-height: 100vh;
+    background: #fff;
+    padding: 12rem 2rem 6rem;
+  }
+
+  .legal-container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .legal-content h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 0.5rem;
+  }
+
+  .last-updated {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 3rem;
+  }
+
+  .legal-content section {
+    margin-bottom: 2.5rem;
+  }
+
+  .legal-content h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-content p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-content ul {
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-content li {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-content strong {
+    color: #111;
+  }
+
+  .legal-content code {
+    background: #f0f0f0;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  @media (max-width: 768px) {
+    .legal-page {
+      padding: 8rem 1.25rem 4rem;
+    }
+  }
+</style>
