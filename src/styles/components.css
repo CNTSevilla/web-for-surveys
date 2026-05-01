@@ -1,0 +1,129 @@
+/* ===================================================
+   SHARED COMPONENT STYLES
+   Used across multiple pages and components
+   =================================================== */
+
+/* Section Labels */
+.section-label {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+/* Section Description */
+.section-description {
+  font-size: 1.2rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+/* Section Containers */
+.section-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Dark Card Base */
+.dark-card {
+  background: var(--color-bg-dark);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2rem;
+}
+
+/* Highlight Text */
+.highlight {
+  color: var(--color-accent);
+}
+
+/* Media Badges (Articles & Videos) */
+.media-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.media-badge svg {
+  flex-shrink: 0;
+}
+
+.media-badge.article {
+  color: #111;
+}
+
+.media-badge.article:hover {
+  background: #111;
+  color: white;
+  border-color: #111;
+}
+
+.media-badge.video {
+  color: #111;
+}
+
+.media-badge.video:hover {
+  background: #ff0000;
+  color: #fff;
+  border-color: #ff0000;
+}
+
+/* Article badge variant on dark backgrounds */
+.media-badge.article--light {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.media-badge.article--light:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Media Badge Groups */
+.media-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Stat Number */
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+}
+
+/* Badge Container */
+.badge-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.badge-container svg {
+  flex-shrink: 0;
+  color: var(--color-accent);
+}

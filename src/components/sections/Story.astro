@@ -1,5 +1,5 @@
 ---
-// StorySection.astro
+import MediaBadge from '../ui/MediaBadge.astro';
 ---
 
 <section class="story-section">
@@ -17,177 +17,21 @@
         alquileres</strong> simbólicos <strong>de 200€</strong> en viviendas VPO.
       </p>
 
-      <p class="articles-label">Así lo contaron los medios:</p>
+      <p class="media-label">Así lo contaron los medios:</p>
 
-      <div class="article-badges">
-        <a
-          href="https://www.eldiario.es/sevilla/chupan-sangre-protesta-arropa-sevilla-11-familias-expulsadas-vpo-comprarlas-banco_1_12988074.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="article-badge"
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19 20H5C3.89543 20 3 19.1046 3 18V6C3 4.89543 3.89543 4 5 4H19C20.1046 4 21 4.89543 21 6V18C21 19.1046 20.1046 20 19 20Z"
-              stroke="currentColor"
-              stroke-width="2"></path>
-            <path
-              d="M7 8H17M7 12H17M7 16H13"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-          </svg>
-          <span>El Diario de Sevilla</span>
-        </a>
-        <a
-          href="https://www.lavozdelsur.es/ediciones/sevilla/indignacion-desahucio-en-sevilla-11-familias-con-menores-cargo-en-bloque-propiedad-santander_349389_102.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="article-badge"
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19 20H5C3.89543 20 3 19.1046 3 18V6C3 4.89543 3.89543 4 5 4H19C20.1046 4 21 4.89543 21 6V18C21 19.1046 20.1046 20 19 20Z"
-              stroke="currentColor"
-              stroke-width="2"></path>
-            <path
-              d="M7 8H17M7 12H17M7 16H13"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-          </svg>
-          <span>La Voz del Sur</span>
-        </a>
-        <a
-          href="https://www.101tv.es/la-solidaridad-obrera-frena-la-entrada-de-los-especuladores-en-palmete-el-banco-se-va-las-familias-se-quedan/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="article-badge"
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19 20H5C3.89543 20 3 19.1046 3 18V6C3 4.89543 3.89543 4 5 4H19C20.1046 4 21 4.89543 21 6V18C21 19.1046 20.1046 20 19 20Z"
-              stroke="currentColor"
-              stroke-width="2"></path>
-            <path
-              d="M7 8H17M7 12H17M7 16H13"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-          </svg>
-          <span>101TV</span>
-        </a>
+      <div class="media-badges-group">
+        <MediaBadge href="https://www.eldiario.es/sevilla/chupan-sangre-protesta-arropa-sevilla-11-familias-expulsadas-vpo-comprarlas-banco_1_12988074.html" type="article" label="El Diario de Sevilla" />
+        <MediaBadge href="https://www.lavozdelsur.es/ediciones/sevilla/indignacion-desahucio-en-sevilla-11-familias-con-menores-cargo-en-bloque-propiedad-santander_349389_102.html" type="article" label="La Voz del Sur" />
+        <MediaBadge href="https://www.101tv.es/la-solidaridad-obrera-frena-la-entrada-de-los-especuladores-en-palmete-el-banco-se-va-las-familias-se-quedan/" type="article" label="101TV" />
       </div>
 
-      <p class="videos-label">Mira el proceso en video:</p>
+      <p class="media-label">Mira el proceso en video:</p>
 
-      <div class="video-badges">
-        <a
-          href="https://www.youtube.com/watch?v=wmGADykbbBc"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="video-badge"
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8 5V19L19 12L8 5Z"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-          <span>Situación previa</span>
-        </a>
-        <a
-          href="https://www.youtube.com/watch?v=BbBBH6ixPFg"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="video-badge"
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8 5V19L19 12L8 5Z"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-          <span>Quejas y organización</span>
-        </a>
-        <a
-          href="https://www.youtube.com/watch?v=iqAX6a_0PgI"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="video-badge"
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8 5V19L19 12L8 5Z"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-          <span>La manifestación</span>
-        </a>
-        <a
-          href="https://www.youtube.com/shorts/Fxe_K3l3FDU"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="video-badge"
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8 5V19L19 12L8 5Z"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-          <span>La victoria (Short)</span>
-        </a>
+      <div class="media-badges-group">
+        <MediaBadge href="https://www.youtube.com/watch?v=wmGADykbbBc" type="video" label="Situación previa" />
+        <MediaBadge href="https://www.youtube.com/watch?v=BbBBH6ixPFg" type="video" label="Quejas y organización" />
+        <MediaBadge href="https://www.youtube.com/watch?v=iqAX6a_0PgI" type="video" label="La manifestación" />
+        <MediaBadge href="https://www.youtube.com/shorts/Fxe_K3l3FDU" type="video" label="La victoria (Short)" />
       </div>
 
       <a href="/la-solucion" class="cta-button">
@@ -263,30 +107,11 @@
     margin-bottom: 2rem;
   }
 
-  .story-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    border: 2px solid #111;
-    padding: 1rem 1.4rem;
-    text-decoration: none;
-    color: #111;
-    font-size: 0.85rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    transition: 0.2s ease;
-  }
-
-  .story-btn:hover {
-    background: #111;
-    color: white;
-  }
-
   .cta-button {
     margin-bottom: 2rem;
   }
 
-  .articles-label {
+  .media-label {
     font-family: var(--font-display);
     font-size: 0.9rem;
     font-weight: 600;
@@ -295,78 +120,14 @@
     letter-spacing: 0.02em;
   }
 
-  .article-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+  .media-label + .media-badges-group {
     margin-bottom: 2rem;
   }
 
-  .article-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #111;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .article-badge:hover {
-    background: #111;
-    color: white;
-    border-color: #111;
-  }
-
-  .article-badge svg {
-    flex-shrink: 0;
-  }
-
-  .videos-label {
-    font-family: var(--font-display);
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.02em;
-    margin-top: 1.5rem;
-  }
-
-  .video-badges {
+  .media-badges-group {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-bottom: 2rem;
-  }
-
-  .video-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #111;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .video-badge:hover {
-    background: #ff0000;
-    color: #fff;
-    border-color: #ff0000;
-  }
-
-  .video-badge svg {
-    flex-shrink: 0;
   }
 
   .story-visual {
@@ -399,11 +160,6 @@
       min-width: 0;
     }
 
-    .article-badge,
-    .video-badge {
-      white-space: nowrap;
-    }
-
     .story-container {
       grid-template-columns: 1fr;
       text-align: center;
@@ -424,15 +180,10 @@
       margin-right: 0;
     }
 
-    .article-badges,
-    .video-badges {
+    .media-badges-group {
       width: 100%;
       justify-content: center;
       box-sizing: border-box;
-    }
-
-    .story-btn {
-      justify-content: center;
     }
   }
 
@@ -444,11 +195,6 @@
 
     .story-text h2 {
       font-size: 2.2rem;
-    }
-
-    .story-btn {
-      width: 100%;
-      justify-content: center;
     }
 
     .story-visual {
@@ -470,8 +216,7 @@
       font-size: 1.1rem;
     }
 
-    .article-badges,
-    .video-badges {
+    .media-badges-group {
       max-width: 100%;
     }
 

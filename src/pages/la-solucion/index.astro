@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/layout/Header.astro";
+import MediaBadge from "../../components/ui/MediaBadge.astro";
 ---
 
 <Layout title="La Solución - Familias Palmete">
@@ -10,7 +11,7 @@ import Header from "../../components/layout/Header.astro";
       <div class="solution-hero-content">
         <span class="section-label">LA SOLUCIÓN</span>
         <h2>La organización<br /><span class="highlight">colectiva es la clave</span></h2>
-        <p class="hero-description">
+        <p class="section-description">
           Tres pasos para conseguir tu alquiler de 200€. <strong>Ya lo logramos en Palmete.</strong>
         </p>
       </div>
@@ -19,25 +20,25 @@ import Header from "../../components/layout/Header.astro";
     <section class="roadmap-section">
       <div class="roadmap-container">
 
-        <div class="roadmap-item" data-aos="fade-right">
+        <div class="roadmap-item">
           <div class="step-number">01</div>
           <div class="step-content">
             <h3>Infomación</h3>
             <p>Conoce tus derechos como inquilino de VPO y las vías legales para defenderlos. Te asesoramos sin coste.</p>
             <div class="step-icon">📚</div>
+          </div>
         </div>
-      </div>
 
-      <div class="roadmap-item" data-aos="fade-left">
+        <div class="roadmap-item">
           <div class="step-number">02</div>
           <div class="step-content">
             <h3>Organización</h3>
             <p>Únete con otros vecinos en un sindicato de inquilinos. La fuerza es colectiva, no luches solo.</p>
             <div class="step-icon">👥</div>
+          </div>
         </div>
-      </div>
 
-      <div class="roadmap-item" data-aos="fade-right">
+        <div class="roadmap-item">
           <div class="step-number">03</div>
           <div class="step-content">
             <h3>Acción</h3>
@@ -46,164 +47,59 @@ import Header from "../../components/layout/Header.astro";
           </div>
         </div>
 
-      <div class="result-as-step-wrapper" data-aos="fade-left">
-        <div class="step-number">04</div>
-        <div class="result-story" data-aos="zoom-in">
-          <div class="result-story-content">
-            <div class="result-stats">
-              <div class="result-number">200€</div>
-              <div class="result-text">alquiler mensual<br />por piso VPO</div>
-              <div class="result-badge">TODO VÍA LEGAL, SIN OKUPAS</div>
-            </div>
+        <div class="result-as-step-wrapper">
+          <div class="step-number">04</div>
+          <div class="result-story">
+            <div class="result-story-content">
+              <div class="result-stats">
+                <div class="result-number">200€</div>
+                <div class="result-text">alquiler mensual<br />por piso VPO</div>
+                <div class="result-badge">TODO VÍA LEGAL, SIN OKUPAS</div>
+              </div>
 
-            <div class="step-icon-topright">🏆</div>
+              <div class="step-icon-topright">🏆</div>
 
-          <div class="result-details">
-            <h3>Lo conseguimos en <span>Palmete, Sevilla.</span></h3>
-            <p>
-              <strong>11 familias unidas y asesoradas por las organizaciones</strong>, han frenado un intento de desahucio ilegal y <strong>han conseguido alquileres</strong> simbólicos <strong>de 200€</strong> en viviendas VPO.
-            </p>
+              <div class="result-details">
+                <h3>Lo conseguimos en <span>Palmete, Sevilla.</span></h3>
+                <p>
+                  <strong>11 familias unidas y asesoradas por las organizaciones</strong>, han frenado un intento de desahucio ilegal y <strong>han conseguido alquileres</strong> simbólicos <strong>de 200€</strong> en viviendas VPO.
+                </p>
 
-            <p>
-              Ubicadas en la calle Verdad nº54, estas familias tomaron la iniciativa de trabajar juntas y buscar asesoramiento profesional para defender sus derechos. Gracias a su esfuerzo personal, la colaboración entre vecinos y el diálogo con las instituciones locales, el Ayuntamiento de Sevilla encontró una solución: mantener sus hogares en régimen de vivienda protegida, con las reparaciones incluidas. Un ejemplo de cómo el compromiso individual y la unión vecinal logran resultados reales.
-            </p>
+                <p>
+                  Ubicadas en la calle Verdad nº54, estas familias tomaron la iniciativa de trabajar juntas y buscar asesoramiento profesional para defender sus derechos. Gracias a su esfuerzo personal, la colaboración entre vecinos y el diálogo con las instituciones locales, el Ayuntamiento de Sevilla encontró una solución: mantener sus hogares en régimen de vivienda protegida, con las reparaciones incluidas. Un ejemplo de cómo el compromiso individual y la unión vecinal logran resultados reales.
+                </p>
 
-            <div class="story-visual">
-              <img
-                src="/images/victory.png"
-                alt="Personas levantando pancarta"
-                class="story-image"
-              />
-            </div>
+                <div class="story-visual">
+                  <img
+                    src="/images/victory.png"
+                    alt="Personas levantando pancarta"
+                    class="story-image"
+                  />
+                </div>
 
-            <p class="articles-label">Así lo contaron los medios:</p>
+                <p class="media-label">Así lo contaron los medios:</p>
 
-            <div class="article-badges">
-              <a
-                href="https://www.eldiario.es/sevilla/chupan-sangre-protesta-arropa-sevilla-11-familias-expulsadas-vpo-comprarlas-banco_1_12988074.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="article-badge"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19 20H5C3.89543 20 3 19.1046 3 18V6C3 4.89543 3.89543 4 5 4H19C20.1046 4 21 4.89543 21 6V18C21 19.1046 20.1046 20 19 20Z" stroke="currentColor" stroke-width="2"></path>
-                  <path d="M7 8H17M7 12H17M7 16H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-                </svg>
-                <span>El Diario de Sevilla</span>
-              </a>
-              <a
-                href="https://www.lavozdelsur.es/ediciones/sevilla/indignacion-desahucio-en-sevilla-11-familias-con-menores-cargo-en-bloque-propiedad-santander_349389_102.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="article-badge"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19 20H5C3.89543 20 3 19.1046 3 18V6C3 4.89543 3.89543 4 5 4H19C20.1046 4 21 4.89543 21 6V18C21 19.1046 20.1046 20 19 20Z" stroke="currentColor" stroke-width="2"></path>
-                  <path d="M7 8H17M7 12H17M7 16H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-                </svg>
-                <span>La Voz del Sur</span>
-              </a>
-              <a
-                href="https://www.101tv.es/la-solidaridad-obrera-frena-la-entrada-de-los-especuladores-en-palmete-el-banco-se-va-las-familias-se-quedan/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="article-badge"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19 20H5C3.89543 20 3 19.1046 3 18V6C3 4.89543 3.89543 4 5 4H19C20.1046 4 21 4.89543 21 6V18C21 19.1046 20.1046 20 19 20Z" stroke="currentColor" stroke-width="2"></path>
-                  <path d="M7 8H17M7 12H17M7 16H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-                </svg>
-                <span>101TV</span>
-              </a>
-              <a
-                href="https://izquierdarevolucionaria.net/index.php/estado-espanol/general/15008-victoria-de-la-lucha-vecinal-contra-los-desahucios-en-palmete-sevilla"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="article-badge"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19 20H5C3.89543 20 3 19.1046 3 18V6C3 4.89543 3.89543 4 5 4H19C20.1046 4 21 4.89543 21 6V18C21 19.1046 20.1046 20 19 20Z" stroke="currentColor" stroke-width="2"></path>
-                  <path d="M7 8H17M7 12H17M7 16H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-                </svg>
-                <span>IR</span>
-              </a>
-              <a
-                href="https://barrioshartos.org/erase-una-vez-en-san-jose-de-palmete/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="article-badge"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19 20H5C3.89543 20 3 19.1046 3 18V6C3 4.89543 3.89543 4 5 4H19C20.1046 4 21 4.89543 21 6V18C21 19.1046 20.1046 20 19 20Z" stroke="currentColor" stroke-width="2"></path>
-                  <path d="M7 8H17M7 12H17M7 16H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-                </svg>
-                <span>Barrios Hartos</span>
-              </a>
-              <a
-                href="https://sevilla.cnt.es/2026/02/la-lucha-obrera-echa-al-santander-de-la-verdad/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="article-badge"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19 20H5C3.89543 20 3 19.1046 3 18V6C3 4.89543 3.89543 4 5 4H19C20.1046 4 21 4.89543 21 6V18C21 19.1046 20.1046 20 19 20Z" stroke="currentColor" stroke-width="2"></path>
-                  <path d="M7 8H17M7 12H17M7 16H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-                </svg>
-                <span>CNT Sevilla</span>
-              </a>
-            </div>
+                <div class="media-badges-group">
+                  <MediaBadge href="https://www.eldiario.es/sevilla/chupan-sangre-protesta-arropa-sevilla-11-familias-expulsadas-vpo-comprarlas-banco_1_12988074.html" type="article" label="El Diario de Sevilla" variant="light" />
+                  <MediaBadge href="https://www.lavozdelsur.es/ediciones/sevilla/indignacion-desahucio-en-sevilla-11-familias-con-menores-cargo-en-bloque-propiedad-santander_349389_102.html" type="article" label="La Voz del Sur" variant="light" />
+                  <MediaBadge href="https://www.101tv.es/la-solidaridad-obrera-frena-la-entrada-de-los-especuladores-en-palmete-el-banco-se-va-las-familias-se-quedan/" type="article" label="101TV" variant="light" />
+                  <MediaBadge href="https://izquierdarevolucionaria.net/index.php/estado-espanol/general/15008-victoria-de-la-lucha-vecinal-contra-los-desahucios-en-palmete-sevilla" type="article" label="IR" variant="light" />
+                  <MediaBadge href="https://barrioshartos.org/erase-una-vez-en-san-jose-de-palmete/" type="article" label="Barrios Hartos" variant="light" />
+                  <MediaBadge href="https://sevilla.cnt.es/2026/02/la-lucha-obrera-echa-al-santander-de-la-verdad/" type="article" label="CNT Sevilla" variant="light" />
+                </div>
 
-            <p class="videos-label">Mira el proceso en video:</p>
+                <p class="media-label">Mira el proceso en video:</p>
 
-            <div class="video-badges">
-              <a
-                href="https://www.youtube.com/watch?v=wmGADykbbBc"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="video-badge"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 5V19L19 12L8 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-                <span>Situación previa</span>
-              </a>
-              <a
-                href="https://www.youtube.com/watch?v=BbBBH6ixPFg"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="video-badge"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 5V19L19 12L8 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-                <span>Quejas y organización</span>
-              </a>
-              <a
-                href="https://www.youtube.com/watch?v=iqAX6a_0PgI"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="video-badge"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 5V19L19 12L8 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-                <span>La manifestación</span>
-              </a>
-              <a
-                href="https://www.youtube.com/shorts/Fxe_K3l3FDU"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="video-badge"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 5V19L19 12L8 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-                <span>La victoria (Short)</span>
-              </a>
+                <div class="media-badges-group">
+                  <MediaBadge href="https://www.youtube.com/watch?v=wmGADykbbBc" type="video" label="Situación previa" variant="light" />
+                  <MediaBadge href="https://www.youtube.com/watch?v=BbBBH6ixPFg" type="video" label="Quejas y organización" variant="light" />
+                  <MediaBadge href="https://www.youtube.com/watch?v=iqAX6a_0PgI" type="video" label="La manifestación" variant="light" />
+                  <MediaBadge href="https://www.youtube.com/shorts/Fxe_K3l3FDU" type="video" label="La victoria (Short)" variant="light" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </section>
 
@@ -235,34 +131,12 @@ import Header from "../../components/layout/Header.astro";
     margin: 0 auto;
   }
 
-  .section-label {
-    display: inline-block;
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--color-accent);
-    letter-spacing: 0.2em;
-    margin-bottom: 1rem;
-  }
-
   .solution-hero h2 {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
     color: #111;
     line-height: 1.1;
     margin-bottom: 1.5rem;
-  }
-
-  .highlight {
-    color: var(--color-accent);
-  }
-
-  .hero-description {
-    font-size: 1.2rem;
-    color: #555;
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto;
   }
 
   .roadmap-section {
@@ -302,6 +176,14 @@ import Header from "../../components/layout/Header.astro";
     z-index: 1;
   }
 
+  .roadmap-item:nth-child(odd) {
+    flex-direction: row;
+  }
+
+  .roadmap-item:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
   .result-as-step-wrapper {
     display: flex;
     align-items: flex-start;
@@ -317,21 +199,9 @@ import Header from "../../components/layout/Header.astro";
   }
 
   .result-as-step-wrapper .result-story {
-    flex:1 1 0;
-    margin:0;
+    flex: 1 1 0;
+    margin: 0;
     max-width: none;
-  }
-
-  .result-as-step .result-story-content {
-    width:100%;
-  }
-
-  .roadmap-item:nth-child(odd) {
-    flex-direction: row;
-  }
-
-  .roadmap-item:nth-child(even) {
-    flex-direction: row-reverse;
   }
 
   .step-number {
@@ -391,7 +261,7 @@ import Header from "../../components/layout/Header.astro";
     position: relative;
     display: flex;
     flex-direction: column;
-    gap:2rem;
+    gap: 2rem;
     background: #0a1929;
     border: 2px solid var(--color-accent);
     border-radius: 16px;
@@ -400,10 +270,6 @@ import Header from "../../components/layout/Header.astro";
 
   .result-stats {
     text-align: center;
-  }
-
-  .result-stats .step-number {
-    margin-bottom: 0.5rem;
   }
 
   .step-icon-topright {
@@ -474,7 +340,7 @@ import Header from "../../components/layout/Header.astro";
     object-fit: cover;
   }
 
-  .articles-label {
+  .media-label {
     font-family: var(--font-display);
     font-size: 0.9rem;
     font-weight: 600;
@@ -483,106 +349,14 @@ import Header from "../../components/layout/Header.astro";
     letter-spacing: 0.02em;
   }
 
-  .article-badges {
+  .media-badges-group {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
   }
 
-  .article-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #fff;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .article-badge:hover {
-    background: var(--color-accent);
-    color: #fff;
-    border-color: var(--color-accent);
-  }
-
-  .article-badge svg {
-    flex-shrink: 0;
-  }
-
-  .videos-label {
-    font-family: var(--font-display);
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.02em;
-    margin-top: 1.5rem;
-  }
-
-  .video-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  .video-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #fff;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s ease;
-  }
-
-  .video-badge:hover {
-    background: #ff0000;
-    color: #fff;
-    border-color: #ff0000;
-  }
-
-  .video-badge svg {
-    flex-shrink: 0;
-  }
-
-  .result-number {
-    font-family: var(--font-display);
-    font-size: 4.5rem;
-    font-weight: 900;
-    color: var(--color-accent);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
-
-  .result-text {
-    font-family: var(--font-display);
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #fff;
-    line-height: 1.3;
-    margin-bottom: 1rem;
-  }
-
-  .result-badge {
-    display: inline-block;
-    background: var(--color-accent);
-    color: #fff;
-    font-family: var(--font-display);
-    font-size: 0.8rem;
-    font-weight: 700;
-    padding: 0.4rem 1rem;
-    border-radius: 4px;
-    letter-spacing: 0.05em;
+  .media-label + .media-badges-group {
+    margin-bottom: 1.5rem;
   }
 
   .cta-section {
@@ -611,31 +385,6 @@ import Header from "../../components/layout/Header.astro";
     margin-bottom: 2rem;
   }
 
-  .cta-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: var(--color-accent);
-    color: #ffffff;
-    font-family: var(--font-display);
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border-radius: 8px;
-    border: none;
-    padding: 1rem 2rem;
-    cursor: pointer;
-    transition: transform 140ms ease, box-shadow 140ms ease;
-    text-decoration: none;
-  }
-
-  .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
-    color: #ffffff;
-  }
-
   @media (max-width: 768px) {
     .solution-hero {
       padding: 8rem 1.5rem 4rem;
@@ -646,12 +395,17 @@ import Header from "../../components/layout/Header.astro";
       gap: 1rem;
     }
 
-    .result-as-step {
+    .result-as-step-wrapper {
       flex-direction: column !important;
+      align-items: flex-start;
     }
 
-    .result-as-step .result-story {
-      max-width: 100%;
+    .result-as-step-wrapper .step-number {
+      margin-bottom: 1rem;
+    }
+
+    .result-as-step-wrapper .result-story {
+      width: 100%;
     }
 
     .step-number {
@@ -670,20 +424,7 @@ import Header from "../../components/layout/Header.astro";
     }
 
     .result-story {
-      max-width:100%;
-    }
-
-    .result-as-step-wrapper {
-      flex-direction: column !important;
-      align-items: flex-start;
-    }
-
-    .result-as-step-wrapper .step-number {
-      margin-bottom: 1rem;
-    }
-
-    .result-as-step-wrapper .result-story {
-      width:100%;
+      max-width: 100%;
     }
 
     .result-story-content {
@@ -694,8 +435,7 @@ import Header from "../../components/layout/Header.astro";
       font-size: 1.5rem;
     }
 
-    .article-badges,
-    .video-badges {
+    .media-badges-group {
       justify-content: center;
     }
   }

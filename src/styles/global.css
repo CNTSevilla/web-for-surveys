@@ -1,12 +1,15 @@
 :root {
-  --color-primary: #0a1929;
-  --color-secondary: #0f2340;
-  --color-accent: #2ecc71;
-  --color-accent-light: #27ae60;
-  --color-text: #ffffff;
-  --color-text-muted: #c4c9d4;
-  --font-display: "Oswald", sans-serif;
-  --font-body: "Source Sans 3", sans-serif;
+  --color-primary: #111111;
+  --color-accent: #00c26f;
+  --color-bg: #ffffff;
+  --color-bg-dark: #0a1929;
+  --color-bg-secondary: #0f2340;
+  --color-text: #111111;
+  --color-text-light: #555555;
+  --color-text-white: #ffffff;
+  --color-border: rgba(0, 0, 0, 0.3);
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Source Sans 3', sans-serif;
 }
 
 * {
@@ -15,22 +18,18 @@
   box-sizing: border-box;
 }
 
-html {
-  font-family: var(--font-body);
-  font-size: 17px;
-  background: var(--color-primary);
-  color: var(--color-text);
-  scroll-behavior: smooth;
-}
-
 body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  overflow-x: hidden;
   min-height: 100vh;
   line-height: 1.6;
 }
 
 a {
-  color: inherit;
   text-decoration: none;
+  color: inherit;
 }
 
 button {
@@ -41,4 +40,60 @@ button {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 700;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background: var(--color-accent);
+  color: #fff;
+  padding: 0.875rem 1.75rem;
+  border-radius: 8px;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(46, 204, 113, 0.35);
+}
+
+@media (max-width: 640px) {
+  .cta-button {
+    font-size: 0.95rem;
+    padding: 0.7rem 1.2rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+.site-footer {
+  text-align: center;
+  padding: 0.5rem;
+  background: #fafafa;
+  border-top: 1px solid #e5e5e5;
+}
+
+.site-footer a {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.site-footer a:hover {
+  color: var(--color-accent);
 }

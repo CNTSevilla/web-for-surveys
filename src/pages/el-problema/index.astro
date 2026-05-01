@@ -14,7 +14,7 @@ import Header from "../../components/layout/Header.astro";
             >no es un derecho</span
           >
         </h2>
-        <p class="hero-description">
+        <p class="section-description">
           Datos reales de Sevilla que demuestran la crisis del alquiler y la
           necesidad de organizarse.
         </p>
@@ -23,7 +23,7 @@ import Header from "../../components/layout/Header.astro";
 
     <section class="stats-section">
       <div class="stats-container">
-        <div class="stat-card" data-aos="fade-up">
+        <div class="stat-card">
           <div class="stat-icon">📋</div>
           <div class="stat-number-wrapper">
             <div class="stat-number" data-target="2790">0</div>
@@ -33,7 +33,7 @@ import Header from "../../components/layout/Header.astro";
           <div class="stat-note">Sevilla marzo 2026</div>
         </div>
 
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-card">
           <div class="stat-icon">📈</div>
           <div class="stat-number" data-target="45">0</div>
           <div class="stat-suffix">%</div>
@@ -43,7 +43,7 @@ import Header from "../../components/layout/Header.astro";
           <div class="stat-note">Últimos 5 años</div>
         </div>
 
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-card">
           <div class="stat-icon">🪙</div>
           <div class="stat-number-wrapper">
             <div class="stat-number" data-target="1050">0</div>
@@ -53,7 +53,7 @@ import Header from "../../components/layout/Header.astro";
           <div class="stat-note">Sevilla noviembre 2024</div>
         </div>
 
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="stat-card">
           <div class="stat-icon">💸</div>
           <div class="stat-number-wrapper">
             <div class="stat-number" data-target="41">0</div>
@@ -68,22 +68,22 @@ import Header from "../../components/layout/Header.astro";
 
   <section class="problems-section">
     <div class="problems-container">
-      <h3 class="problems-title" data-aos="fade-up">
+      <h3 class="problems-title">
         Datos reales de Sevilla
       </h3>
 
       <div class="problem-grid">
-        <div class="problem-card" data-aos="fade-right">
+        <div class="problem-card">
           <div class="card-icon">📈</div>
           <h4>Alquiler +7,2% anual</h4>
           <p>
             El precio del alquiler subió un 7,2% en 2024. El metro cuadrado
             alcanzó máximos históricos: 11,9€/m².
           </p>
-          <div class="card-tag">Encaredmiento</div>
+          <div class="card-tag">Encarecimiento</div>
         </div>
 
-        <div class="problem-card" data-aos="fade-left" data-aos-delay="100">
+        <div class="problem-card">
           <div class="card-icon">🏠</div>
           <h4>43% más demanda VPO</h4>
           <p>
@@ -93,7 +93,7 @@ import Header from "../../components/layout/Header.astro";
           <div class="card-tag">Desabastecimiento</div>
         </div>
 
-        <div class="problem-card" data-aos="fade-right" data-aos-delay="200">
+        <div class="problem-card">
           <div class="card-icon">🏢</div>
           <h4>33% para inversores</h4>
           <p>
@@ -103,7 +103,7 @@ import Header from "../../components/layout/Header.astro";
           <div class="card-tag">Especulación</div>
         </div>
 
-        <div class="problem-card" data-aos="fade-left" data-aos-delay="300">
+        <div class="problem-card">
           <div class="card-icon">⚖️</div>
           <h4>Jóvenes: 53% solicitantes</h4>
           <p>
@@ -142,7 +142,6 @@ import Header from "../../components/layout/Header.astro";
 </Layout>
 
 <script>
-  // Animate counters on scroll
   function animateCounters() {
     const counters = document.querySelectorAll(".stat-number");
 
@@ -178,7 +177,6 @@ import Header from "../../components/layout/Header.astro";
     counters.forEach((counter) => observer.observe(counter));
   }
 
-  // Initialize on load
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", animateCounters);
   } else {
@@ -199,34 +197,12 @@ import Header from "../../components/layout/Header.astro";
     margin: 0 auto;
   }
 
-  .section-label {
-    display: inline-block;
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--color-accent);
-    letter-spacing: 0.2em;
-    margin-bottom: 1rem;
-  }
-
   .problem-hero h2 {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
     color: #111;
     line-height: 1.1;
     margin-bottom: 1.5rem;
-  }
-
-  .highlight {
-    color: var(--color-accent);
-  }
-
-  .hero-description {
-    font-size: 1.2rem;
-    color: #555;
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto;
   }
 
   .stats-section {
@@ -254,6 +230,11 @@ import Header from "../../components/layout/Header.astro";
       border-color 0.2s;
   }
 
+  .stat-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-accent);
+  }
+
   .stat-number-wrapper {
     display: flex;
     align-items: baseline;
@@ -262,23 +243,17 @@ import Header from "../../components/layout/Header.astro";
     margin-bottom: 0.5rem;
   }
 
-  .stat-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--color-accent);
-  }
-
   .stat-icon {
     font-size: 2.5rem;
     margin-bottom: 1rem;
   }
 
-  .stat-number {
+  .stat-card .stat-number {
     font-family: var(--font-display);
     font-size: 3.5rem;
     font-weight: 900;
     color: var(--color-accent);
     line-height: 1;
-    margin-bottom: 0;
     display: inline;
   }
 
@@ -292,30 +267,12 @@ import Header from "../../components/layout/Header.astro";
     vertical-align: baseline;
   }
 
-  .stat-number-wrapper {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 0.3rem;
-    margin-bottom: 0.5rem;
-  }
-
   .stat-label {
     font-family: var(--font-display);
     font-size: 1.1rem;
     font-weight: 600;
     color: #fff;
     margin-bottom: 0.5rem;
-  }
-
-  .stat-suffix {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-accent);
-    line-height: 1;
-    display: none;
-    vertical-align: baseline;
   }
 
   .stat-note {
@@ -424,31 +381,6 @@ import Header from "../../components/layout/Header.astro";
     margin-bottom: 2rem;
   }
 
-  .cta-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: var(--color-accent);
-    color: #ffffff;
-    font-family: var(--font-display);
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition:
-      transform 140ms ease,
-      box-shadow 140ms ease;
-  }
-
-  .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
-    color: #ffffff;
-  }
-
   @media (max-width: 768px) {
     .problem-hero {
       padding: 8rem 1.5rem 4rem;
@@ -458,7 +390,7 @@ import Header from "../../components/layout/Header.astro";
       grid-template-columns: 1fr 1fr;
     }
 
-    .stat-number {
+    .stat-card .stat-number {
       font-size: 2.5rem;
     }
 
