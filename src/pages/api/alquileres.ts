@@ -1,8 +1,27 @@
+/**
+ * alquileres.ts - Endpoint GET para listados paginados de alquileres.
+ *
+ * Diseñado para el panel de administración. Soporta búsqueda por zona
+ * y paginación configurable.
+ *
+ * Query params:
+ *   - page: número de página (por defecto: 1)
+ *   - limit: elementos por página (por defecto: 10)
+ *   - search: filtro por nombre de zona (opcional)
+ *
+ * Respuesta (200):
+ *   { items: Array, totalPages: number, currentPage: number, total: number }
+ *
+ * Respuesta (500):
+ *   { error: string }
+ */
+
 import Database from 'better-sqlite3';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import type { APIContext } from 'astro';
 
+/** Ruta absoluta al archivo de base de datos SQLite */
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dbPath = path.join(__dirname, '../../../db/rentals.db');
 

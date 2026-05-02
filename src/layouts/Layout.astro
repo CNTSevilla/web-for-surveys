@@ -1,9 +1,25 @@
 ---
+/**
+ * Layout.astro - Plantilla base HTML para todas las páginas del sitio.
+ *
+ * Proporciona la estructura HTML común incluyendo:
+ * - Meta tags (charset, viewport, descripción)
+ * - Fuentes de Google (Oswald + Source Sans 3)
+ * - Favicon
+ * - Script global para gestionar la apertura/cierre del modal de contacto
+ * - Footer opcional con enlace a política de privacidad
+ *
+ * @prop {string} title - Título de la página (se muestra en la pestaña del navegador)
+ * @prop {boolean} [showFooter=true] - Si se debe mostrar el footer con el enlace de privacidad
+ */
+
 import '../styles/global.css';
 import '../styles/components.css';
 
 interface Props {
+  /** Título de la página */
   title: string;
+  /** Controla la visibilidad del footer (por defecto: true) */
   showFooter?: boolean;
 }
 

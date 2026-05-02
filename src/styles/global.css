@@ -1,14 +1,39 @@
+/**
+ * global.css - Estilos globales y variables CSS del proyecto.
+ *
+ * Define:
+ * - Variables CSS (custom properties) para colores, fuentes y bordes
+ * - Reset básico (margin, padding, box-sizing)
+ * - Estilos base para body, enlaces, botones y títulos
+ * - Clase .hidden para ocultar elementos
+ * - Estilo del botón CTA principal
+ * - Estilos del footer del sitio
+ */
+
 :root {
+  /** Color principal (texto oscuro) */
   --color-primary: #111111;
+  /** Color de acento (verde) usado en CTAs y elementos destacados */
   --color-accent: #00c26f;
+  /** Color de fondo principal (blanco) */
   --color-bg: #ffffff;
+  /** Color de fondo oscuro para secciones */
   --color-bg-dark: #0a1929;
+  /** Color de fondo secundario oscuro */
   --color-bg-secondary: #0f2340;
+  /** Color de texto principal */
   --color-text: #111111;
+  /** Color de texto secundario (gris) */
   --color-text-light: #555555;
+  /** Color de texto atenuado (para fondos oscuros) */
+  --color-text-muted: #c4c9d4;
+  /** Color de texto blanco */
   --color-text-white: #ffffff;
+  /** Color de bordes */
   --color-border: rgba(0, 0, 0, 0.3);
+  /** Fuente de visualización (títulos, headers) - Oswald */
   --font-display: 'Oswald', sans-serif;
+  /** Fuente de cuerpo (texto normal) - Source Sans 3 */
   --font-body: 'Source Sans 3', sans-serif;
 }
 

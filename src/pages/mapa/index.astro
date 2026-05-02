@@ -133,15 +133,50 @@ import Header from "../../components/layout/Header.astro";
   src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
 
 <script>
+  /**
+   * mapa/index.astro - Página del mapa interactivo de alquileres.
+   *
+   * Funcionalidades:
+   * - Mapa Leaflet centrado en Sevilla/Andalucía con límites geográficos
+   * - Marcadores de colores según precio del alquiler
+   * - Clustering de marcadores (Leaflet.markercluster)
+   * - Mapa de calor (leaflet.heat) como vista alternativa
+   * - Búsqueda de direcciones vía Nominatim
+   * - Formulario popup para reportar alquileres al hacer clic en el mapa
+   * - Contador de vecinos organizados
+   * - Capa satelital toggle (ESRI World Imagery)
+   * - Botón de pantalla completa
+   * - Control de duplicados por fingerprint del navegador
+   * - 22 zonas predefinidas de Andalucía
+   *
+   * Dependencias externas (CDN):
+   * - Leaflet 1.9.4
+   * - Leaflet.markercluster 1.5.3
+   * - leaflet.heat 0.2.0
+   */
+
+  /** Instancia del mapa Leaflet */
   let map;
-  let selectedLat, selectedLng;
+  /** Latitud seleccionada al hacer clic en el mapa */
+  let selectedLat;
+  /** Longitud seleccionada al hacer clic en el mapa */
+  let selectedLng;
+  /** Array de marcadores individuales */
   let markers = [];
+  /** Grupo de clustering de marcadores */
   let markerClusterGroup;
+  /** Capa del mapa de calor */
   let heatLayer;
+  /** Estado del mapa de calor (activo/inactivo) */
   let useHeatmap = false;
+  /** Estado del clustering (activo/inactivo) */
   let useClusters = true;
 
-  // Predefined zones with VERIFIED coordinates for Andalucía
+  /**
+   * Zonas predefinidas de Andalucía con coordenadas verificadas.
+   * Se usan como fallback cuando la geocodificación inversa no devuelve resultados.
+   * Cada zona tiene: name (nombre), lat (latitud), lng (longitud).
+   */
   const zones = [
     { name: "Palmete", lat: 37.344, lng: -5.946 },
     { name: "Triana", lat: 37.371, lng: -6.002 },
@@ -167,7 +202,12 @@ import Header from "../../components/layout/Header.astro";
     { name: "Morón de la Frontera", lat: 37.12, lng: -5.451 },
   ];
 
-  // Wait for Leaflet to load
+  /**
+   * Espera a que la librería Leaflet y el plugin MarkerCluster se carguen
+   * completamente antes de ejecutar el callback. Usa polling cada 100ms.
+   *
+   * @param {Function} callback - Función a ejecutar cuando Leaflet esté listo
+   */
   function waitForLeaflet(callback) {
     if (
       typeof L !== "undefined" &&
@@ -181,7 +221,20 @@ import Header from "../../components/layout/Header.astro";
     }
   }
 
-  // Initialize map restricted to Andalucía
+  /**
+   * Inicializa el mapa Leaflet con todas sus funcionalidades:
+   * - Centro en Sevilla (37.3891, -5.9845) con zoom 11
+   * - Límites geográficos restringidos a Andalucía
+   * - Cursor personalizado (ubicación) que se reaplica constantemente
+   * - Dos capas de tiles: OpenStreetMap (estándar) y ESRI (satélite)
+   * - Control de capas (toggle entre estándar y satélite)
+   * - Control de zoom en esquina inferior derecha
+   * - Escala métrica en esquina inferior izquierda
+   * - Botón de pantalla completa personalizado
+   * - Grupo de clustering de marcadores con iconos coloreados por precio medio
+   * - Evento de clic en el mapa: abre el formulario de reporte
+   * - Eventos de búsqueda y toggles de vista
+   */
   function initMap() {
      map = L.map("map", {
        center: [37.3891, -5.9845],
@@ -308,7 +361,15 @@ import Header from "../../components/layout/Header.astro";
       .addEventListener("click", toggleClusters);
   }
 
-  // Get zone from coordinates using reverse geocoding (real place name)
+  /**
+   * Obtiene el nombre de la zona a partir de coordenadas usando
+   * geocodificación inversa de Nominatim. Si falla, devuelve la zona
+   * predefinida más cercana por distancia euclidiana.
+   *
+   * @param {number} lat - Latitud del punto
+   * @param {number} lng - Longitud del punto
+   * @returns {Promise<string>} Nombre de la zona detectada
+   */
   async function getZoneFromCoords(lat, lng) {
     try {
       const response = await fetch(
@@ -354,7 +415,11 @@ import Header from "../../components/layout/Header.astro";
     return closest.name;
   }
 
-  // Search location (async with proper loader)
+  /**
+   * Busca una ubicación usando la API de Nominatim (geocodificación directa).
+   * Añade "Andalucía, Spain" a la consulta y restringe los resultados a
+   * la región andaluza. Mueve el mapa al primer resultado encontrado.
+   */
   async function searchLocation() {
     const query = document.getElementById("search-input").value.trim();
     if (!query) return;
@@ -386,7 +451,17 @@ import Header from "../../components/layout/Header.astro";
     }
   }
 
-  // Load map data with clusters
+  /**
+   * Carga los datos de alquileres desde la API y los renderiza en el mapa.
+   * Limpia marcadores anteriores, actualiza el contador de vecinos y
+   * crea circleMarkers coloreados según el precio del alquiler.
+   *
+   * Colores por precio:
+   *   - ≤300€: verde (#00c26f)
+   *   - 301-500€: amarillo (#ffd900)
+   *   - 501-700€: naranja (#ff9800)
+   *   - >700€: rojo (#ff4444)
+   */
   function loadMapData() {
     showLoader("Cargando puntos...");
     markers.forEach(function (m) {
@@ -466,7 +541,11 @@ import Header from "../../components/layout/Header.astro";
       });
   }
 
-  // Load heatmap
+  /**
+   * Carga y renderiza el mapa de calor (heatmap) con datos de alquileres.
+   * La intensidad del calor se basa en el precio del alquiler (precio/100).
+   * Usa un gradiente de verde (barato) a rojo (caro).
+   */
   function loadHeatmapData() {
     fetch("/api/map-data.json")
       .then(function (response) {
@@ -494,7 +573,11 @@ import Header from "../../components/layout/Header.astro";
       });
   }
 
-  // Toggle heatmap (cannot deactivate if clusters is also off)
+  /**
+   * Activa la vista de mapa de calor y desactiva el clustering.
+   * No permite desactivar si el clustering también está apagado
+   * (siempre debe haber al menos una vista activa).
+   */
   function toggleHeatmap() {
     const btn = document.getElementById("toggle-heatmap");
 
@@ -510,7 +593,10 @@ import Header from "../../components/layout/Header.astro";
     showNotification("Vista mapa de calor activada", "success");
   }
 
-  // Toggle clusters (cannot deactivate if heatmap is also off)
+  /**
+   * Activa la vista de clustering de marcadores y desactiva el heatmap.
+   * No permite desactivar si el heatmap también está apagado.
+   */
   function toggleClusters() {
     const btn = document.getElementById("toggle-clusters");
 
@@ -526,7 +612,12 @@ import Header from "../../components/layout/Header.astro";
     showNotification("Vista alquileres activada", "success");
   }
 
-  // Get color by price
+  /**
+   * Devuelve un color hex según el precio del alquiler.
+   *
+   * @param {number} precio - Precio mensual del alquiler en €
+   * @returns {string} Color en formato hexadecimal
+   */
   function getColorByPrice(precio) {
     if (precio <= 300) return "#00c26f";
     if (precio <= 500) return "#ffd900";
@@ -534,7 +625,13 @@ import Header from "../../components/layout/Header.astro";
     return "#ff4444";
   }
 
-  // Show notification
+  /**
+   * Muestra una notificación temporal (toast) en la parte superior de la pantalla.
+   * Reemplaza cualquier notificación existente. Se auto-elimina tras 3 segundos.
+   *
+   * @param {string} message - Texto a mostrar
+   * @param {'success'|'error'} type - Tipo de notificación (determina el color)
+   */
   function showNotification(message, type) {
     const existing = document.querySelector(".custom-notification");
     if (existing) existing.remove();
@@ -557,7 +654,12 @@ import Header from "../../components/layout/Header.astro";
     }, 3000);
   }
 
-  // Show/hide loader
+  /**
+   * Muestra un loader temporal con mensaje en la parte superior de la pantalla.
+   * Reemplaza cualquier loader existente.
+   *
+   * @param {string} message - Mensaje a mostrar junto al spinner
+   */
   function showLoader(message) {
     const existing = document.querySelector(".custom-loader");
     if (existing) existing.remove();
@@ -572,6 +674,7 @@ import Header from "../../components/layout/Header.astro";
     document.body.appendChild(loader);
   }
 
+  /** Oculta el loader actual si existe */
   function hideLoader() {
     const loader = document.querySelector(".custom-loader");
     if (loader) loader.remove();

@@ -1,7 +1,32 @@
+/**
+ * submit.json.js - Endpoint POST para enviar nuevos reportes de alquiler.
+ *
+ * Recibe datos de un formulario de reporte de alquiler y los inserta
+ * en la base de datos SQLite. Implementa control de duplicados mediante
+ * fingerprint del navegador (los admins pueden saltarse esta restricción).
+ *
+ * Request body esperado:
+ *   - lat: número (latitud)
+ *   - lng: número (longitud)
+ *   - zona: string (nombre de la zona/barrio)
+ *   - precio: número (precio del alquiler en €)
+ *   - quiere_contacto: boolean (opcional)
+ *   - email: string (opcional, solo si quiere_contacto)
+ *   - fingerprint: string (identificador del navegador)
+ *   - isAdmin: boolean (si el usuario es admin)
+ *
+ * Respuestas:
+ *   - 200: { success: true }
+ *   - 400: { error: 'Missing required fields' }
+ *   - 409: { error: 'Ya has enviado un alquiler...' } (duplicado)
+ *   - 500: { error: 'Server error' }
+ */
+
 import Database from 'better-sqlite3';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+/** Ruta absoluta al archivo de base de datos SQLite */
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dbPath = path.join(__dirname, '../../../db/rentals.db');
 

@@ -1,7 +1,23 @@
 ---
+/**
+ * Badge.astro - Componente reutilizable de etiqueta/insignia.
+ *
+ * Muestra un pequeño contenedor con borde, icono opcional y texto.
+ * Se utiliza para destacar información breve como estadísticas o estados.
+ *
+ * @prop {string} [icon] - Icono SVG opcional para mostrar a la izquierda del texto
+ * @prop {'default'|'success'} [variant='default'] - Variante de estilo:
+ *   - 'default': borde gris oscuro, texto negro
+ *   - 'success': borde verde, texto verde
+ * @prop {string} [class] - Clases CSS adicionales para personalización
+ */
+
 interface Props {
+  /** Icono SVG opcional para mostrar a la izquierda del texto */
   icon?: string;
+  /** Variante de estilo: 'default' (oscuro) o 'success' (verde) */
   variant?: 'default' | 'success';
+  /** Clases CSS adicionales para personalización */
   class?: string;
 }
 

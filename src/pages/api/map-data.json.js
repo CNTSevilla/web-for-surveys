@@ -1,7 +1,22 @@
+/**
+ * map-data.json.js - Endpoint GET para obtener todos los reportes de alquiler.
+ *
+ * Devuelve la lista completa de alquileres reportados, ordenados por fecha
+ * descendente (más recientes primero). Se utiliza para renderizar los
+ * marcadores en el mapa interactivo.
+ *
+ * Respuesta (200):
+ *   Array de objetos con: id, lat, lng, zona, precio, quiere_contacto, created_at
+ *
+ * Respuesta (500):
+ *   { error: 'Database error' }
+ */
+
 import Database from 'better-sqlite3';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+/** Ruta absoluta al archivo de base de datos SQLite */
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dbPath = path.join(__dirname, '../../../db/rentals.db');
 

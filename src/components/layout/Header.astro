@@ -1,5 +1,20 @@
 ---
+/**
+ * Header.astro - Barra de navegación fija en la parte superior del sitio.
+ *
+ * Incluye:
+ * - Logo con icono de casa y texto de marca "VIVIENDA DIGNA SE CONSIGUE"
+ * - Enlaces de navegación a las páginas principales
+ * - Botón CTA "ACTÚA AHORA" que abre el modal de contacto
+ * - Menú hamburguesa responsivo para pantallas < 1155px
+ * - Modal de contacto integrado
+ *
+ * El enlace activo se resalta automáticamente comparando la ruta actual.
+ */
+
 import Modal from "../ui/Modal.astro";
+
+/** Ruta actual de la página para resaltar el enlace de navegación activo */
 const currentPath = Astro.url.pathname;
 ---
 

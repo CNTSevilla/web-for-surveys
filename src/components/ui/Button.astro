@@ -1,7 +1,23 @@
 ---
+/**
+ * Button.astro - Componente reutilizable de botón/enlace.
+ *
+ * Renderiza automáticamente un <a> si se proporciona href,
+ * o un <button> si no. Útil para CTAs y acciones.
+ *
+ * @prop {string} [href='#'] - Si se proporciona, renderiza un enlace <a>
+ * @prop {'primary'|'secondary'} [variant='primary'] - Variante de estilo:
+ *   - 'primary': fondo verde con texto blanco
+ *   - 'secondary': borde oscuro con fondo transparente
+ * @prop {string} [class] - Clases CSS adicionales para personalización
+ */
+
 interface Props {
+  /** Si se proporciona, renderiza un <a> en lugar de <button> */
   href?: string;
+  /** Variante de estilo: 'primary' (verde) o 'secondary' (borde oscuro) */
   variant?: 'primary' | 'secondary';
+  /** Clases CSS adicionales para personalización */
   class?: string;
 }
 

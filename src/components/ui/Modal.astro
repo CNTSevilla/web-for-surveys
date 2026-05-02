@@ -1,6 +1,27 @@
 ---
+/**
+ * Modal.astro - Modal de contacto superpuesto.
+ *
+ * Contiene:
+ * - Información de contacto (email)
+ * - Enlace al mapa interactivo
+ * - Formulario de contacto con integración Netlify Forms
+ *   (campos: nombre, email, mensaje)
+ *
+ * El modal se controla mediante:
+ * - Atributo data-modal en botones que lo abren
+ * - Botón de cierre (X)
+ * - Clic fuera del modal (overlay)
+ * - Tecla Escape
+ *
+ * @prop {string} [id='contact-modal'] - ID del elemento modal
+ * @prop {string} [title='Contacta con nosotros'] - Título del modal
+ */
+
 interface Props {
+  /** ID del elemento modal para vincular con triggers */
   id?: string;
+  /** Título visible en la cabecera del modal */
   title?: string;
 }
 

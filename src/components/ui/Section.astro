@@ -1,6 +1,18 @@
 ---
+/**
+ * Section.astro - Wrapper genérico para elementos <section>.
+ *
+ * Componente mínimo que envuelve contenido en una etiqueta <section>
+ * con clases CSS compartidas. Útil para mantener consistencia estructural.
+ *
+ * @prop {string} [id] - ID del elemento para anclas y referencias
+ * @prop {string} [class] - Clases CSS adicionales
+ */
+
 interface Props {
+  /** ID del elemento section para anclas y referencias */
   id?: string;
+  /** Clases CSS adicionales */
   class?: string;
 }
 

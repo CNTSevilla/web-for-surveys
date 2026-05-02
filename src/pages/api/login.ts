@@ -1,8 +1,39 @@
+/**
+ * login.ts - Endpoint POST para autenticación de administrador.
+ *
+ * Verifica las credenciales (usuario y contraseña) contra las variables
+ * de entorno definidas en .env (ADMIN_USERNAME, ADMIN_PASSWORD).
+ *
+ * Si las credenciales son válidas, genera un token codificado en base64
+ * que contiene el nombre de usuario y la fecha de expiración (30 minutos).
+ *
+ * Nota de seguridad: las credenciales se comparan en texto plano. El token
+ * es simplemente base64 (no firmado ni encriptado).
+ *
+ * Request body:
+ *   - username: string
+ *   - password: string
+ *
+ * Respuesta (200):
+ *   { success: true, token: string }
+ *
+ * Respuesta (401):
+ *   { error: 'Credenciales inválidas' }
+ *
+ * Respuesta (500):
+ *   { error: 'Configuración incompleta...' } o error interno
+ */
+
 import type { APIContext } from 'astro';
 import fsSync from 'fs';
 import path from 'path';
 
-// Función para leer .env manualmente
+/**
+ * Lee manualmente el archivo .env cuando process.env no contiene
+ * las variables (útil en entornos standalone de Node.js).
+ *
+ * @returns {Record<string, string>} Objeto con las variables de entorno parseadas
+ */
 function loadEnv() {
   try {
     const envPath = path.resolve(process.cwd(), '.env');

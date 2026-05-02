@@ -1,8 +1,25 @@
 ---
+/**
+ * MediaBadge.astro - Badge para enlaces a artículos o videos de medios.
+ *
+ * Muestra un enlace con un icono (documento para artículos, play para videos)
+ * y una etiqueta. Al hacer hover invierte los colores.
+ * Se usa para referenciar coberturas mediáticas de la victoria de Palmete.
+ *
+ * @prop {string} href - URL del enlace (se abre en nueva pestaña)
+ * @prop {'article'|'video'} [type='article'] - Tipo de medio para el icono
+ * @prop {string} label - Texto visible del badge (nombre del medio)
+ * @prop {'default'|'light'} [variant='default'] - Variante para fondos oscuros
+ */
+
 interface Props {
+  /** URL del enlace (se abre en nueva pestaña con noopener) */
   href: string;
+  /** Tipo de medio: 'article' (icono documento) o 'video' (icono play) */
   type?: 'article' | 'video';
+  /** Texto visible del badge (nombre del medio o descripción) */
   label: string;
+  /** Variante: 'default' o 'light' (para fondos oscuros) */
   variant?: 'default' | 'light';
 }
 
