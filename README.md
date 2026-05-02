@@ -211,6 +211,38 @@ node ./dist/server/entry.mjs
 
 El servidor escuchará en el puerto configurado (por defecto 4321). Compatible con cualquier servidor que ejecute Node.js (VPS, Railway, Render, etc.).
 
+## Seguridad y anti-spam
+
+El mapa interactivo incluye protecciones contra envíos masivos y duplicados:
+
+### Fingerprint del navegador
+
+Cada usuario genera un identificador único basado en características de su dispositivo que se envía con cada reporte:
+
+- **User agent** del navegador
+- **Resolución de pantalla**
+- **Idioma del sistema**
+- **Zona horaria**
+- **Núcleos del procesador** (`navigator.hardwareConcurrency`)
+- **Memoria RAM** (`navigator.deviceMemory`)
+- **Profundidad de color**
+
+Estos datos se combinan y se hash en un identificador tipo `fp_x7k9m2`.
+
+### Límite: 1 envío por usuario
+
+El servidor comprueba si el fingerprint ya existe en la base de datos antes de aceptar un nuevo reporte. Si ya ha enviado un alquiler, recibe un error `409` (Conflicto):
+
+```json
+{ "error": "Ya has enviado un alquiler. Solo se permite un envío por usuario." }
+```
+
+Los administradores (con sesión activa) pueden saltarse esta restricción.
+
+### Validación de campos
+
+El servidor rechaza envíos incompletos (`400`) si faltan campos obligatorios: `lat`, `lng`, `zona` o `precio`.
+
 ## Cómo contribuir
 
 ### Clonar el repositorio
