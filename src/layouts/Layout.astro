@@ -3,14 +3,18 @@
  * Layout.astro - Plantilla base HTML para todas las páginas del sitio.
  *
  * Proporciona la estructura HTML común incluyendo:
- * - Meta tags (charset, viewport, descripción)
+ * - Meta tags SEO (charset, viewport, descripción, canonical, robots, Open Graph, Twitter Card)
  * - Fuentes de Google (Oswald + Source Sans 3)
  * - Favicon
  * - Script global para gestionar la apertura/cierre del modal de contacto
  * - Footer opcional con enlace a política de privacidad
+ * - Datos estructurados JSON-LD para SEO
  *
- * @prop {string} title - Título de la página (se muestra en la pestaña del navegador)
- * @prop {boolean} [showFooter=true] - Si se debe mostrar el footer con el enlace de privacidad
+ * @prop {string} title - Título de la página
+ * @prop {string} [description] - Descripción SEO (por defecto: genérica del sitio)
+ * @prop {string} [canonical] - URL canónica (por defecto: se construye con Astro.url)
+ * @prop {string} [ogImage] - Imagen para Open Graph (por defecto: /favicon.png)
+ * @prop {boolean} [showFooter=true] - Si se debe mostrar el footer
  */
 
 import '../styles/global.css';
@@ -19,25 +23,71 @@ import '../styles/components.css';
 interface Props {
   /** Título de la página */
   title: string;
-  /** Controla la visibilidad del footer (por defecto: true) */
+  /** Descripción para SEO (se muestra en resultados de Google y redes sociales) */
+  description?: string;
+  /** URL canónica de la página */
+  canonical?: string;
+  /** Imagen para compartir en redes sociales (Open Graph) */
+  ogImage?: string;
+  /** Controla la visibilidad del footer */
   showFooter?: boolean;
 }
 
-const { title, showFooter = true } = Astro.props;
+const { title, description, canonical, ogImage, showFooter = true } = Astro.props;
+
+/** URL base del sitio (cambiar en producción) */
+const SITE_URL = 'https://familiaspalmete.es';
+/** Descripción por defecto si no se pasa una específica */
+const DEFAULT_DESCRIPTION = '11 familias de Palmete, Sevilla, frenaron desahucios ilegales y consiguieron alquileres VPO de 200€/mes. Únete a la lucha por vivienda digna.';
+const pageDescription = description || DEFAULT_DESCRIPTION;
+/** URL canónica por defecto */
+const pageCanonical = canonical || SITE_URL + Astro.url.pathname;
+/** Imagen OG por defecto */
+const pageOgImage = ogImage || '/favicon.png';
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Lucha Sindical - Vivienda Digna para Todos"
-    />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" sizes="64x64" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
+
     <title>{title}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={pageCanonical} />
+
+    <link rel="icon" sizes="64x64" type="image/png" href="/favicon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Familias Palmete - Vivienda Digna" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={pageCanonical} />
+    <meta property="og:image" content={SITE_URL + pageOgImage} />
+    <meta property="og:image:alt" content="Vivienda Digna se consigue - Familias Palmete" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={SITE_URL + pageOgImage} />
+    <meta name="twitter:image:alt" content="Vivienda Digna se consigue - Familias Palmete" />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Familias Palmete - Vivienda Digna",
+      "url": SITE_URL,
+      "description": DEFAULT_DESCRIPTION,
+      "inLanguage": "es",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Comité de la Calle Verdad"
+      }
+    })} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

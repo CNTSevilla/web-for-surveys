@@ -4,7 +4,7 @@ import Header from "../../components/layout/Header.astro";
 import MediaBadge from "../../components/ui/MediaBadge.astro";
 ---
 
-<Layout title="La Solución - Familias Palmete">
+<Layout title="La Solución - Familias Palmete" description="Tres pasos para conseguir tu alquiler de 200€: Infórmate, Organízate, Actúa. Ya lo logramos en Palmete, Sevilla, con 11 familias unidas.">
   <Header />
   <main>
     <section class="solution-hero">
@@ -357,6 +357,12 @@ import MediaBadge from "../../components/ui/MediaBadge.astro";
 
   .media-label + .media-badges-group {
     margin-bottom: 1.5rem;
+  }
+
+  :global(.media-badge.video:hover) {
+    background: #ff0000;
+    color: #fff;
+    border-color: #ff0000;
   }
 
   .cta-section {
