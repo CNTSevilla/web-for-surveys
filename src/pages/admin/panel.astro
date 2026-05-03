@@ -47,6 +47,7 @@ import '../../styles/admin.css';
               <th>ID</th>
               <th>Barrio</th>
               <th>Alquiler</th>
+              <th>Dirección</th>
               <th>Email</th>
               <th>Acciones</th>
             </tr>
@@ -150,7 +151,7 @@ import '../../styles/admin.css';
     const renderTable = () => {
       tableBody.innerHTML = '';
       if (filteredData.length === 0) {
-        tableBody.innerHTML = '<tr><td colspan="5" class="no-data">No se encontraron registros</td></tr>';
+        tableBody.innerHTML = '<tr><td colspan="6" class="no-data">No se encontraron registros</td></tr>';
         return;
       }
 
@@ -160,6 +161,7 @@ import '../../styles/admin.css';
           <td>${item.id || '-'}</td>
           <td>${item.barrio || '-'}</td>
           <td>${item.alquiler ? item.alquiler + '€' : '-'}</td>
+          <td>${item.direccion || '-'}</td>
           <td>${item.quiere_contacto && item.email ? item.email : '-'}</td>
           <td>
             <button class="delete-btn" data-id="${item.id}">Borrar</button>

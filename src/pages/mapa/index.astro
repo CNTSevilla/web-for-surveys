@@ -45,6 +45,19 @@ import Header from "../../components/layout/Header.astro";
         <div id="form-popup" class="form-popup hidden">
           <h3>Reportar mi alquiler</h3>
           <form id="rent-form">
+            <div class="form-group" id="address-group">
+              <label for="direccion">Tu dirección</label>
+              <input
+                type="text"
+                id="direccion"
+                name="direccion"
+                placeholder="Calle, número, piso..."
+              />
+              <p class="form-hint">
+                Opcional. Úsala si quieres que nos pongamos en contacto contigo
+                para ayudarte a conseguir un alquiler de 200€ con nuestro método.
+              </p>
+            </div>
             <div class="form-group">
               <label for="precio">Alquiler mensual (€)</label>
               <input
@@ -686,6 +699,7 @@ import Header from "../../components/layout/Header.astro";
     const precio = document.getElementById("precio").value;
     const quiereContacto = document.getElementById("quiere-contacto").checked;
     const email = document.getElementById("email-contacto").value.trim();
+    const direccion = document.getElementById("direccion").value.trim();
     const zona = document.getElementById("form-popup").dataset.zona;
 
     if (quiereContacto && !email) {
@@ -718,16 +732,17 @@ import Header from "../../components/layout/Header.astro";
     fetch("/api/submit.json", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        lat: selectedLat,
-        lng: selectedLng,
-        zona: zona,
-        precio: parseInt(precio),
-        quiere_contacto: quiereContacto,
-        email: quiereContacto ? email : null,
-        fingerprint: generateFingerprint(),
-        isAdmin: !!localStorage.getItem('adminToken'),
-      }),
+        body: JSON.stringify({
+          lat: selectedLat,
+          lng: selectedLng,
+          zona: zona,
+          precio: parseInt(precio),
+          quiere_contacto: quiereContacto,
+          email: quiereContacto ? email : null,
+          direccion: direccion || null,
+          fingerprint: generateFingerprint(),
+          isAdmin: !!localStorage.getItem('adminToken'),
+        }),
     })
       .then(function (response) {
         hideLoader();
@@ -948,6 +963,13 @@ import Header from "../../components/layout/Header.astro";
     width: 18px;
     height: 18px;
     cursor: pointer;
+  }
+
+  .form-hint {
+    font-size: 0.78rem;
+    color: #777;
+    margin-top: 0.35rem;
+    line-height: 1.4;
   }
 
   .form-actions {

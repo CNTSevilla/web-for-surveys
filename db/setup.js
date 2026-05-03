@@ -36,6 +36,7 @@ db.exec(`
     precio INTEGER NOT NULL,
     quiere_contacto INTEGER DEFAULT 0,
     email TEXT,
+    direccion TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   )
 `);

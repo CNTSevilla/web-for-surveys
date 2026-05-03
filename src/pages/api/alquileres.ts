@@ -54,7 +54,7 @@ export async function GET({ request }: APIContext) {
     const totalPages = Math.ceil(total / limit);
 
     const rows = db.prepare(`
-      SELECT id, zona as barrio, precio as alquiler, email, quiere_contacto
+      SELECT id, zona as barrio, precio as alquiler, email, direccion, quiere_contacto
       FROM rent_reports 
       ${whereClause}
       ORDER BY created_at DESC

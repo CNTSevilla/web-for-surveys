@@ -25,7 +25,7 @@ export async function GET() {
     const db = new Database(dbPath);
     
     const rows = db.prepare(`
-      SELECT id, lat, lng, zona, precio, quiere_contacto, created_at
+      SELECT id, lat, lng, zona, precio, quiere_contacto, direccion, created_at
       FROM rent_reports
       ORDER BY created_at DESC
     `).all();

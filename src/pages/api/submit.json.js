@@ -12,6 +12,7 @@
  *   - precio: número (precio del alquiler en €)
  *   - quiere_contacto: boolean (opcional)
  *   - email: string (opcional, solo si quiere_contacto)
+ *   - direccion: string (opcional, dirección del usuario)
  *   - fingerprint: string (identificador del navegador)
  *   - isAdmin: boolean (si el usuario es admin)
  *
@@ -33,7 +34,7 @@ const dbPath = path.join(__dirname, '../../../db/rentals.db');
 export async function POST({ request }) {
   try {
     const body = await request.json();
-    const { lat, lng, zona, precio, quiere_contacto, email, fingerprint, isAdmin } = body;
+    const { lat, lng, zona, precio, quiere_contacto, email, direccion, fingerprint, isAdmin } = body;
     
     if (!lat || !lng || !zona || !precio) {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), {
@@ -44,8 +45,9 @@ export async function POST({ request }) {
     
     const db = new Database(dbPath);
 
-    // Ensure column exists
+    // Ensure columns exist
     try { db.exec('ALTER TABLE rent_reports ADD COLUMN fingerprint TEXT'); } catch {}
+    try { db.exec('ALTER TABLE rent_reports ADD COLUMN direccion TEXT'); } catch {}
 
     // Check for duplicate fingerprint (skip for admin)
     if (fingerprint && !isAdmin) {
@@ -60,8 +62,8 @@ export async function POST({ request }) {
     }
     
     const stmt = db.prepare(`
-      INSERT INTO rent_reports (lat, lng, zona, precio, quiere_contacto, email, fingerprint)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO rent_reports (lat, lng, zona, precio, quiere_contacto, email, direccion, fingerprint)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `);
     
     stmt.run(
@@ -71,6 +73,7 @@ export async function POST({ request }) {
       precio,
       quiere_contacto ? 1 : 0,
       quiere_contacto && email ? email : null,
+      direccion || null,
       fingerprint || null
     );
     
