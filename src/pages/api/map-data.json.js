@@ -24,6 +24,10 @@ export async function GET() {
   try {
     const db = new Database(dbPath);
     
+    // Ensure new columns exist (for databases created before the address field was added)
+    try { db.exec('ALTER TABLE rent_reports ADD COLUMN fingerprint TEXT'); } catch {}
+    try { db.exec('ALTER TABLE rent_reports ADD COLUMN direccion TEXT'); } catch {}
+    
     const rows = db.prepare(`
       SELECT id, lat, lng, zona, precio, quiere_contacto, direccion, created_at
       FROM rent_reports

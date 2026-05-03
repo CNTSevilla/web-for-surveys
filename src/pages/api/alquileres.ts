@@ -34,8 +34,10 @@ export async function GET({ request }: APIContext) {
 
     const db = new Database(dbPath);
 
-    // Add missing columns if they don't exist
+    // Add missing columns if they don't exist (for databases created before schema updates)
     try { db.exec('ALTER TABLE rent_reports ADD COLUMN ip TEXT'); } catch {}
+    try { db.exec('ALTER TABLE rent_reports ADD COLUMN fingerprint TEXT'); } catch {}
+    try { db.exec('ALTER TABLE rent_reports ADD COLUMN direccion TEXT'); } catch {}
 
     const offset = (page - 1) * limit;
 

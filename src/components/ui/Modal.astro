@@ -5,8 +5,13 @@
  * Contiene:
  * - Información de contacto (email)
  * - Enlace al mapa interactivo
- * - Formulario de contacto con integración Netlify Forms
- *   (campos: nombre, email, mensaje)
+ * - Formulario con campos: dirección, alquiler mensual (€),
+ *   checkbox "Quiero que me contactéis", email (condicional), mensaje
+ * - El campo dirección es opcional y sirve para captación de leads
+ *   (ayudar al usuario a conseguir alquiler de 200€)
+ * - El campo alquiler es obligatorio (con asterisco rojo)
+ * - El campo email se muestra solo al marcar el checkbox
+ * - Incluye nota de privacidad sobre email y dirección
  *
  * El modal se controla mediante:
  * - Atributo data-modal en botones que lo abren
@@ -63,22 +68,37 @@ const { id = 'contact-modal', title = 'Contacta con nosotros' } = Astro.props;
        </div>
 
 <form class="contact-form" name="contact" method="POST" data-netlify="true">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Nombre</label>
-            <input type="text" id="name" name="name" required placeholder="Tu nombre" />
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="tu@email.com" />
-          </div>
+        <div class="form-group" id="modal-direccion-group">
+          <label for="modal-direccion">Tu dirección</label>
+          <input type="text" id="modal-direccion" name="direccion" placeholder="Calle, número, piso..." />
+          <p class="form-hint-modal">
+            Opcional. Déjanos tu dirección para ayudarte a conseguir un alquiler de 200€ con nuestro método.
+          </p>
         </div>
 
         <div class="form-group">
-          <label for="message">Mensaje</label>
-          <textarea id="message" name="message" rows="4" required placeholder="¿En qué podemos ayudarte?"></textarea>
+          <label for="modal-precio">Alquiler mensual (€) <span class="required">*</span></label>
+          <input type="number" id="modal-precio" name="precio" required min="0" step="10" placeholder="750, 800..." />
         </div>
+
+        <div class="form-group checkbox-group">
+          <label>
+            <input type="checkbox" id="modal-quiere-contacto" name="quiere-contacto" />
+            Quiero que me contactéis
+          </label>
+        </div>
+
+        <div class="form-group hidden" id="modal-email-group">
+          <label for="modal-email">Email <span class="required">*</span></label>
+          <input type="email" id="modal-email" name="email" placeholder="tu@email.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="modal-message">Mensaje / Nota</label>
+          <textarea id="modal-message" name="message" rows="4" placeholder="¿En qué podemos ayudarte?"></textarea>
+        </div>
+
+        <p class="privacy-note">Tu email y dirección nunca serán publicados en ningún caso.</p>
 
         <button type="submit" class="submit-button">ENVIAR MENSAJE</button>
       </form>
@@ -284,7 +304,8 @@ const { id = 'contact-modal', title = 'Contacta con nosotros' } = Astro.props;
   }
 
   .form-group input,
-  .form-group textarea {
+  .form-group textarea,
+  .form-group input[type="number"] {
     background: var(--color-secondary);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
@@ -303,13 +324,54 @@ const { id = 'contact-modal', title = 'Contacta con nosotros' } = Astro.props;
   }
 
   .form-group input:focus,
-  .form-group textarea:focus {
+  .form-group textarea:focus,
+  .form-group input[type="number"]:focus {
     outline: none;
     border-color: var(--color-accent);
   }
 
+  .required {
+    color: #ff4444;
+    font-weight: 700;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  .checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-accent);
+    cursor: pointer;
+  }
+
+  .form-hint-modal {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    margin-top: 0.35rem;
+    line-height: 1.4;
+  }
+
+  .privacy-note {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    line-height: 1.4;
+    margin-top: 0.25rem;
+  }
+
   .form-group input::placeholder,
-  .form-group textarea::placeholder {
+  .form-group textarea::placeholder,
+  .form-group input[type="number"]::placeholder {
     color: var(--color-text-muted);
   }
 
@@ -343,9 +405,16 @@ const { id = 'contact-modal', title = 'Contacta con nosotros' } = Astro.props;
     .modal-container {
       border-radius: 0;
       max-height: 100vh;
+      max-height: 100dvh;
       width: 100%;
       height: 100vh;
+      height: 100dvh;
       border: none;
+      padding-top: env(safe-area-inset-top);
+    }
+
+    .modal-close {
+      top: max(1rem, env(safe-area-inset-top));
     }
 
     .modal-content {
@@ -355,10 +424,6 @@ const { id = 'contact-modal', title = 'Contacta con nosotros' } = Astro.props;
     .modal-content h2 {
       font-size: 1.5rem;
     }
-
-    .form-row {
-      grid-template-columns: 1fr;
-    }
   }
 </style>
 
@@ -367,6 +432,12 @@ const { id = 'contact-modal', title = 'Contacta con nosotros' } = Astro.props;
     const modal = document.getElementById('contact-modal');
     const closeBtn = modal?.querySelector('.modal-close');
     const triggerButtons = document.querySelectorAll('[data-modal="contact-modal"]');
+    const checkbox = document.getElementById('modal-quiere-contacto');
+    const emailGroup = document.getElementById('modal-email-group');
+
+    checkbox?.addEventListener('change', () => {
+      emailGroup?.classList.toggle('hidden', !checkbox.checked);
+    });
 
     function openModal() {
       modal?.classList.add('open');

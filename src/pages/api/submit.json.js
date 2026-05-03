@@ -9,10 +9,10 @@
  *   - lat: número (latitud)
  *   - lng: número (longitud)
  *   - zona: string (nombre de la zona/barrio)
- *   - precio: número (precio del alquiler en €)
+ *   - precio: número (precio del alquiler en €, obligatorio)
  *   - quiere_contacto: boolean (opcional)
  *   - email: string (opcional, solo si quiere_contacto)
- *   - direccion: string (opcional, dirección del usuario)
+ *   - direccion: string (opcional, dirección del usuario para captación de leads)
  *   - fingerprint: string (identificador del navegador)
  *   - isAdmin: boolean (si el usuario es admin)
  *

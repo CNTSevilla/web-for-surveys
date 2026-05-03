@@ -233,7 +233,8 @@ import '../../styles/admin.css';
       filteredData = allData.filter(item =>
         (item.barrio && item.barrio.toLowerCase().includes(searchTerm)) ||
         (item.email && item.email.toLowerCase().includes(searchTerm)) ||
-        (item.alquiler && item.alquiler.toString().includes(searchTerm))
+        (item.alquiler && item.alquiler.toString().includes(searchTerm)) ||
+        (item.direccion && item.direccion.toLowerCase().includes(searchTerm))
       );
       renderTable();
       renderInfo(1, 1);

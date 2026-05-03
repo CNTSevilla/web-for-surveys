@@ -59,7 +59,7 @@ import Header from "../../components/layout/Header.astro";
               </p>
             </div>
             <div class="form-group">
-              <label for="precio">Alquiler mensual (€)</label>
+              <label for="precio">Alquiler mensual (€) <span class="required">*</span></label>
               <input
                 type="number"
                 id="precio"
@@ -67,6 +67,7 @@ import Header from "../../components/layout/Header.astro";
                 required
                 min="0"
                 step="10"
+                placeholder="750, 800..."
               />
             </div>
             <div class="form-group checkbox-group">
@@ -76,18 +77,19 @@ import Header from "../../components/layout/Header.astro";
                   id="quiere-contacto"
                   name="quiere-contacto"
                 />
-                Quiero que me contactéis para organizarme
+                Quiero que me contactéis
               </label>
             </div>
             <div class="form-group hidden" id="email-group">
-              <label for="email-contacto">Email</label>
+              <label for="email-contacto">Email <span class="required">*</span></label>
               <input
-                type="text"
+                type="email"
                 id="email-contacto"
                 name="email-contacto"
                 placeholder="tu@email.com"
               />
             </div>
+            <p class="privacy-note-map">Tu email y dirección nunca serán publicados en ningún caso.</p>
             <div class="form-actions">
               <button type="submit" class="btn-submit">Enviar</button>
               <button type="button" class="btn-cancel" id="btn-cancel"
@@ -146,27 +148,28 @@ import Header from "../../components/layout/Header.astro";
   src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
 
 <script>
-  /**
-   * mapa/index.astro - Página del mapa interactivo de alquileres.
-   *
-   * Funcionalidades:
-   * - Mapa Leaflet centrado en Sevilla/Andalucía con límites geográficos
-   * - Marcadores de colores según precio del alquiler
-   * - Clustering de marcadores (Leaflet.markercluster)
-   * - Mapa de calor (leaflet.heat) como vista alternativa
-   * - Búsqueda de direcciones vía Nominatim
-   * - Formulario popup para reportar alquileres al hacer clic en el mapa
-   * - Contador de vecinos organizados
-   * - Capa satelital toggle (ESRI World Imagery)
-   * - Botón de pantalla completa
-   * - Control de duplicados por fingerprint del navegador
-   * - 22 zonas predefinidas de Andalucía
-   *
-   * Dependencias externas (CDN):
-   * - Leaflet 1.9.4
-   * - Leaflet.markercluster 1.5.3
-   * - leaflet.heat 0.2.0
-   */
+/**
+ * mapa/index.astro - Página del mapa interactivo de alquileres.
+ *
+ * Funcionalidades:
+ * - Mapa Leaflet centrado en Sevilla/Andalucía con límites geográficos
+ * - Marcadores de colores según precio del alquiler
+ * - Clustering de marcadores (Leaflet.markercluster)
+ * - Mapa de calor (leaflet.heat) como vista alternativa
+ * - Búsqueda de direcciones vía Nominatim
+ * - Formulario popup para reportar alquileres al hacer clic en el mapa
+ *   (campos: dirección opcional, alquiler obligatorio*, contacto opcional, email)
+ * - Contador de vecinos organizados
+ * - Capa satelital toggle (ESRI World Imagery)
+ * - Botón de pantalla completa
+ * - Control de duplicados por fingerprint del navegador
+ * - 22 zonas predefinidas de Andalucía
+ *
+ * Dependencias externas (CDN):
+ * - Leaflet 1.9.4
+ * - Leaflet.markercluster 1.5.3
+ * - leaflet.heat 0.2.0
+ */
 
   /** Instancia del mapa Leaflet */
   let map;
@@ -707,6 +710,11 @@ import Header from "../../components/layout/Header.astro";
       return;
     }
 
+    if (quiereContacto && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showNotification("Por favor, introduce un email válido", "error");
+      return;
+    }
+
     const generateFingerprint = () => {
       const components = [
         navigator.userAgent,
@@ -787,6 +795,7 @@ import Header from "../../components/layout/Header.astro";
     document.getElementById("form-popup").classList.add("hidden");
     document.getElementById("rent-form").reset();
     document.getElementById("email-group").classList.add("hidden");
+    document.getElementById("direccion").value = "";
   });
 
   waitForLeaflet(initMap);
@@ -802,6 +811,7 @@ import Header from "../../components/layout/Header.astro";
   .map-header {
     text-align: center;
     margin-bottom: 2rem;
+    margin-top: 4rem;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
@@ -942,8 +952,14 @@ import Header from "../../components/layout/Header.astro";
     margin-bottom: 0.5rem;
   }
 
+  .required {
+    color: #ff4444;
+    font-weight: 700;
+  }
+
   .form-group input[type="number"],
-  .form-group input[type="text"] {
+  .form-group input[type="text"],
+  .form-group input[type="email"] {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #ddd;
@@ -962,6 +978,7 @@ import Header from "../../components/layout/Header.astro";
   .checkbox-group input[type="checkbox"] {
     width: 18px;
     height: 18px;
+    accent-color: var(--color-accent);
     cursor: pointer;
   }
 
@@ -970,6 +987,14 @@ import Header from "../../components/layout/Header.astro";
     color: #777;
     margin-top: 0.35rem;
     line-height: 1.4;
+  }
+
+  .privacy-note-map {
+    font-size: 0.78rem;
+    color: #777;
+    text-align: center;
+    line-height: 1.4;
+    margin-top: 0.25rem;
   }
 
   .form-actions {
