@@ -16,7 +16,7 @@ El sitio incluye un **mapa interactivo** donde cualquier persona puede reportar 
 
 ## Requisitos previos
 
-Antes de empezar, necesitas instalar **Node.js**, **npm** y **Docker** (con Docker Compose) en tu sistema.
+Antes de empezar, necesitas instalar **Node.js**, **npm** y **MySQL 8.0** (puede ser local o con Docker).
 
 ### Instalar Node.js y npm
 
@@ -72,6 +72,26 @@ node --version
 npm --version
 ```
 
+### Instalar Docker (recomendado para MySQL)
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt install -y docker.io docker-compose-v2
+sudo systemctl enable --now docker
+```
+
+**macOS:** Descarga [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+**Windows:** Descarga [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+Verifica la instalación:
+```bash
+docker --version
+docker compose version
+```
+
+> **Alternativa:** Si ya tienes MySQL 8.0 instalado localmente, puedes usarlo directamente configurando las variables de entorno en el `.env`. No necesitas Docker.
+
 ---
 
 ## Paso a paso para ejecutar el proyecto
@@ -110,6 +130,7 @@ O créalo manualmente:
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=TuContraseñaSegura
 
+# MySQL — ajusta según tu configuración
 DB_HOST=localhost
 DB_PORT=3306
 DB_USER=familiaspalmete
@@ -117,19 +138,39 @@ DB_PASSWORD=familiaspalmete
 DB_NAME=familiaspalmete
 ```
 
-> **Nota:** Si no existe el archivo `.env` pero sí un `.env.example` en el repositorio, copia ese archivo. Si no existe ninguno, crea el archivo `.env` con las credenciales que quieras.
+> **Nota:** Si no existe el archivo `.env` pero sí un `.env.example` en el repositorio, copia ese archivo. Si no existe ninguno, crea el archivo `.env` con las credenciales que quieras. Las variables `DB_*` deben coincidir con la configuración de tu MySQL.
 
-### 4. Inicializar la base de datos (MySQL con Docker)
+### 4. Arrancar MySQL
+
+#### Opción A — Con Docker (recomendado)
 
 ```bash
-# Arrancar MySQL en Docker
+# Arrancar MySQL 8.0 en contenedor
 docker compose up -d
+```
 
-# (Opcional) Crear la tabla manualmente si no se creó sola
+Esto crea un contenedor con MySQL 8.0, la base de datos `familiaspalmete`, el usuario `familiaspalmete` y la tabla `rent_reports` automáticamente mediante `db/init.sql`. La primera vez puede tardar unos segundos mientras MySQL se inicializa.
+
+#### Opción B — Con MySQL local
+
+Si ya tienes MySQL 8.0 instalado, crea la base de datos y el usuario:
+
+```sql
+CREATE DATABASE IF NOT EXISTS familiaspalmete;
+CREATE USER IF NOT EXISTS 'familiaspalmete'@'%' IDENTIFIED BY 'familiaspalmete';
+GRANT ALL PRIVILEGES ON familiaspalmete.* TO 'familiaspalmete'@'%';
+FLUSH PRIVILEGES;
+```
+
+Luego crea la tabla ejecutando:
+
+```bash
+mysql -u root -p familiaspalmete < db/init.sql
+# O también:
 node db/setup.js
 ```
 
-El contenedor de MySQL crea la tabla `rent_reports` automáticamente al iniciar por primera vez mediante `db/init.sql`. La primera vez puede tardar unos segundos mientras MySQL se inicializa.
+Asegúrate de que las variables `DB_*` en tu `.env` coincidan con tu configuración local.
 
 ### 5. Arrancar el servidor de desarrollo
 
