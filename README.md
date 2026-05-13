@@ -10,13 +10,13 @@ El sitio incluye un **mapa interactivo** donde cualquier persona puede reportar 
 |---|---|
 | Framework | [Astro 4](https://astro.build/) (SSR) |
 | Servidor | Node.js (`@astrojs/node`, modo standalone) |
-| Base de datos | SQLite (`better-sqlite3`) |
+| Base de datos | MySQL 8.0 (`mysql2` + Docker Compose) |
 | Mapas | Leaflet.js + MarkerCluster + Heatmap |
 | Autenticación | Token base64 (30 min expiración) |
 
 ## Requisitos previos
 
-Antes de empezar, necesitas instalar **Node.js** y **npm** en tu sistema.
+Antes de empezar, necesitas instalar **Node.js**, **npm** y **Docker** (con Docker Compose) en tu sistema.
 
 ### Instalar Node.js y npm
 
@@ -92,7 +92,7 @@ cd FamiliasPalmete
 npm install
 ```
 
-Este comando descarga e instala todas las librerías necesarias (Astro, SQLite, etc.) en la carpeta `node_modules/`. Solo se ejecuta una vez, o cada vez que cambie `package.json`.
+Este comando descarga e instala todas las librerías necesarias (Astro, MySQL, etc.) en la carpeta `node_modules/`. Solo se ejecuta una vez, o cada vez que cambie `package.json`.
 
 ### 3. Configurar variables de entorno
 
@@ -109,17 +109,27 @@ O créalo manualmente:
 ```
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=TuContraseñaSegura
+
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=familiaspalmete
+DB_PASSWORD=familiaspalmete
+DB_NAME=familiaspalmete
 ```
 
 > **Nota:** Si no existe el archivo `.env` pero sí un `.env.example` en el repositorio, copia ese archivo. Si no existe ninguno, crea el archivo `.env` con las credenciales que quieras.
 
-### 4. Inicializar la base de datos
+### 4. Inicializar la base de datos (MySQL con Docker)
 
 ```bash
+# Arrancar MySQL en Docker
+docker compose up -d
+
+# (Opcional) Crear la tabla manualmente si no se creó sola
 node db/setup.js
 ```
 
-Este comando crea la tabla `rent_reports` dentro de `db/rentals.db`. El archivo `.db` está ignorado por git, así que cada vez que clones el repositorio necesitarás ejecutar este paso para generar la base de datos.
+El contenedor de MySQL crea la tabla `rent_reports` automáticamente al iniciar por primera vez mediante `db/init.sql`. La primera vez puede tardar unos segundos mientras MySQL se inicializa.
 
 ### 5. Arrancar el servidor de desarrollo
 
@@ -160,8 +170,9 @@ Inicia un servidor local con los archivos de producción para verificar que todo
 ```
 FamiliasPalmete/
 ├── db/                         # Base de datos
-│   ├── setup.js                # Script de inicialización
-│   └── rentals.db              # SQLite (se genera automáticamente)
+│   ├── connection.js           # Pool de conexión MySQL
+│   ├── init.sql                # Esquema inicial (se ejecuta en Docker)
+│   └── setup.js                # Script de inicialización manual
 ├── public/                     # Archivos estáticos (imágenes, favicon)
 ├── src/
 │   ├── components/
@@ -185,6 +196,7 @@ FamiliasPalmete/
 │   │       ├── login.ts             # POST: autenticación admin
 │   │       └── verify-token.ts      # POST: verificar token
 │   └── styles/               # CSS global, componentes, admin
+├── docker-compose.yml        # MySQL 8.0 en contenedor
 ├── astro.config.mjs          # Configuración Astro (SSR + Node.js)
 ├── package.json              # Dependencias y scripts
 ├── tsconfig.json             # Configuración TypeScript
