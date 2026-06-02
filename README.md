@@ -103,7 +103,7 @@ Abre una terminal y navega a la carpeta donde quieras guardar el proyecto:
 ```bash
 cd ~/Escritorio   # O la carpeta que prefieras
 git clone <URL_DEL_REPOSITORIO>
-cd FamiliasPalmete
+cd web-for-surveys
 ```
 
 ### 2. Instalar las dependencias
@@ -209,7 +209,7 @@ Inicia un servidor local con los archivos de producción para verificar que todo
 ## Estructura del proyecto
 
 ```
-FamiliasPalmete/
+web-for-surveys/
 ├── db/                         # Base de datos
 │   ├── connection.js           # Pool de conexión MySQL
 │   ├── init.sql                # Esquema inicial (se ejecuta en Docker)
@@ -304,12 +304,12 @@ Puedes clonar el repositorio de dos formas:
 
 **HTTPS** (lectura y escritura con token):
 ```bash
-git clone https://github.com/<usuario>/FamiliasPalmete.git
+git clone https://github.com/<usuario>/web-for-surveys.git
 ```
 
 **SSH** (recomendado para contribuir frecuentemente):
 ```bash
-git clone git@github.com:<usuario>/FamiliasPalmete.git
+git clone git@github.com:tu-usuario/web-for-surveys.git
 ```
 
 > Para usar SSH necesitas configurar una clave SSH en tu cuenta de GitHub. Sigue los pasos más abajo.
@@ -419,12 +419,12 @@ Deberías ver: `Hi <usuario>! You've successfully authenticated, but GitHub does
 
 1. Clona tu fork (no el repositorio original):
    ```bash
-   git clone git@github.com:tu-usuario/FamiliasPalmete.git
+   git clone git@github.com:tu-usuario/web-for-surveys.git
    ```
 
 2. **Añade el repo original como remoto** para mantenerlo actualizado:
    ```bash
-   git remote add upstream git@github.com:usuario-original/FamiliasPalmete.git
+   git remote add upstream git@github.com:usuario-original/web-for-surveys.git
    ```
 
 3. Sigue los pasos 1-3 de arriba (rama, cambios, commit).
